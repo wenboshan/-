@@ -16,7 +16,7 @@
 <meta property="og:site_name" content="文泊山的博客">
 <meta property="og:description" content="设计模式（Design pattern）是一套被反复使用、多数人知晓的、经过分类编目的、代码设计经验的总结。使用设计模式是为了可重用代码、让代码更容易被他人理解、保证代码可靠性。 毫无疑问，设计模式于己于他人于系统都是多赢的，设计模式使代码编制真正工程化，设计模式是软件工程的基石，如同大厦的一块块砖石一样。项目中合理的运用设计模式可以完美的解决很多问题，每种模式在现在中都有相应的原理来与之对应，每">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2018-05-16T11:54:44.697Z">
+<meta property="og:updated_time" content="2018-05-17T02:01:04.554Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="设计模式整理和浅谈">
 <meta name="twitter:description" content="设计模式（Design pattern）是一套被反复使用、多数人知晓的、经过分类编目的、代码设计经验的总结。使用设计模式是为了可重用代码、让代码更容易被他人理解、保证代码可靠性。 毫无疑问，设计模式于己于他人于系统都是多赢的，设计模式使代码编制真正工程化，设计模式是软件工程的基石，如同大厦的一块块砖石一样。项目中合理的运用设计模式可以完美的解决很多问题，每种模式在现在中都有相应的原理来与之对应，每">
@@ -54,7 +54,7 @@
 		  <h1 class="header-author"><a href="/">文泊山</a></h1>
 		</hgroup>
 		
-		<p class="header-subtitle">广州撸猫有限公司（撸猫，我们更专业）</p>
+		<p class="header-subtitle">自爱，沉稳，而后爱人</p>
 		
 
 		<nav class="header-menu">
@@ -62,7 +62,7 @@
 			
 				<li><a href="/">主页</a></li>
 	        
-				<li><a href="/tags/随笔">随笔</a></li>
+				<li><a href="/tags/">随笔</a></li>
 	        
 				<li><a href="/about/">关于</a></li>
 	        
@@ -114,7 +114,7 @@
 			  <h1 class="header-author js-header-author">文泊山</h1>
 			</hgroup>
 			
-			<p class="header-subtitle"><i class="icon icon-quo-left"></i>广州撸猫有限公司（撸猫，我们更专业）<i class="icon icon-quo-right"></i></p>
+			<p class="header-subtitle"><i class="icon icon-quo-left"></i>自爱，沉稳，而后爱人<i class="icon icon-quo-right"></i></p>
 			
 			
 			
@@ -144,7 +144,7 @@
 				
 					<li style="width: 33.333333333333336%"><a href="/">主页</a></li>
 		        
-					<li style="width: 33.333333333333336%"><a href="/tags/随笔">随笔</a></li>
+					<li style="width: 33.333333333333336%"><a href="/tags/">随笔</a></li>
 		        
 					<li style="width: 33.333333333333336%"><a href="/about/">关于</a></li>
 		        
@@ -186,7 +186,8 @@
 <p>个人看法：<br>创建型模式，是在创建bean类时使用到的设计模式;<br>a.工厂方法模式可以解决频繁创建使用一个类的对象的问题;<br>b.抽象工厂模式可以解决频繁创建使用一类类的对象的问题;<br>c.单例模式可以解决频繁使用频繁创建一个对象的问题;<br>d.建造者模式可以将多个对象进行配置，产品一个新的复杂的对象;<br>e.原型模式是基于cloneable的对象复制；</p>
 <p>结构型模式，共七种：适配器模式、装饰器模式、代理模式、外观模式、桥接模式、组合模式、享元模式。   </p>
 <p>个人看法<br>a.适配器模式：现实生活中电压转换器，usb接口，GUI(AWT)等都是很好的应用，是通过抽象类实现接口并通过抽象的实现接口的方法来实现转化，这样可以解决接口的方法必须全部实现的一个弊端（突然想起的词汇……用词不准确的地方还请谅解）;<br>b.装饰模式，是在原来的类的基础上增加一些方法，做修饰使用，所以在使用的时候需要传入原对象，例如在java.io包下的文件流等类；<br>c.代理模式是第三方代为执行目标类的方法，代理类和目标类实现同一个接口，实现同一个方法；<br>注1：<br>装饰模式和代理模式的区别:<br> 静态代理模式其对象关系是在编译时就决定了的，但是装饰模式是动态的，静态代理模式在使用的时候不需要在去建造被代理对象，但是装饰模式需要传入一个对象进去，而且根据对象的不用可以进行不一样的操作；<br>d.外观模式:类似在创建型模式中的建造者模式，不过建造者是产生一个复杂的对象，但是外观模式是创建一个复杂的方法；<br>e.桥接模式:将抽象化与实现化解耦，使得二者可以独立变化，面向接口编程，jdbc接口的实现；<br>f.组合模式:对象层面的递归，在二叉树，链表中使用较多。LinkedList，LinkedHashMap中有使用这个；<br>g.享元模式：jdbc链接池的实现；</p>
-<p>行为型模式，共十一种：策略模式、模板方法模式、观察者模式、迭代子模式、责任链模式、命令模式、备忘录模式、状态模式、访问者模式、中介者模式、解释器模式。<br>a.策略模式: 作为一个行为型模式，将算法进行封装，在处理不同的业务的时候使用不同的算法，也是面向接口编程，传入接口排序的实现方式是通过这种方式实现的；<br>b.模板方法模式：在抽象类方法中定义好主方法的模板，然后调用由子类实现的被继承的方法，进而实现父类的掌控子类的作用（这是个控制欲很强的父类吧）；<br>c.观察者模式:被观察类提供一个容器存储观察者的对象，以及必要的注册和删除方法，当被观察者的状态发生变化的时候通知观察者模式,观察者实现必要的被通知方法，个人认为这个大概是通知模式更好……  在jdk中可以通过继承jdk中已有的接口和类快速实现；（但是在单例多线程的应用场景下感觉基本无法使用）<br>d.迭代子模式<br>分为迭代角色和聚合角色，通过迭代角色访问聚合角色，将访问过程和具体聚合实现分开。是客户端访问的时候只需要使用迭代角色就可以。如果访问过程发生改变，不需要去更改原有的聚合实现。复合设计模式中的开闭原则；<br>e.责任链模式<br>责任链模式的意义在于分工，<br>多级调用<br>注2：<br>策略模式与桥接模式的区别：<br>策略模式作为一种行为型模式，主要是在处理问题的时候通过不同的方法实现，解决客户端的问题；<br>桥接模式作为一种结构型模式，主要是建立一个可以处理不同问题的对象提供给客户端；</p>
+<p>行为型模式，共十一种：策略模式、模板方法模式、观察者模式、迭代子模式、责任链模式、命令模式、备忘录模式、状态模式、访问者模式、中介者模式、解释器模式。<br>a.策略模式: 作为一个行为型模式，将算法进行封装，在处理不同的业务的时候使用不同的算法，也是面向接口编程，传入接口排序的实现方式是通过这种方式实现的；<br>b.模板方法模式：在抽象类方法中定义好主方法的模板，然后调用由子类实现的被继承的方法，进而实现父类的掌控子类的作用（这是个控制欲很强的父类吧）；<br>c.观察者模式:被观察类提供一个容器存储观察者的对象，以及必要的注册和删除方法，当被观察者的状态发生变化的时候通知观察者模式,观察者实现必要的被通知方法，个人认为这个大概是通知模式更好……  在jdk中可以通过继承jdk中已有的接口和类快速实现；（但是在单例多线程的应用场景下感觉基本无法使用）<br>d.迭代子模式<br>分为迭代角色和聚合角色，通过迭代角色访问聚合角色，将访问过程和具体聚合实现分开。是客户端访问的时候只需要使用迭代角色就可以。如果访问过程发生改变，不需要去更改原有的聚合实现。复合设计模式中的开闭原则；<br>e.责任链模式<br>责任链模式的意义在于分工，对应迪米特法则，里氏代换原则；  </p>
+<p>多级调用<br>注2：<br>策略模式与桥接模式的区别：<br>策略模式作为一种行为型模式，主要是在处理问题的时候通过不同的方法实现，解决客户端的问题；<br>桥接模式作为一种结构型模式，主要是建立一个可以处理不同问题的对象提供给客户端；</p>
 <h2 id="二、设计模式的六大原则"><a href="#二、设计模式的六大原则" class="headerlink" title="二、设计模式的六大原则"></a>二、设计模式的六大原则</h2><p>1、开闭原则（Open Close Principle）<br>开闭原则就是说对扩展开放，对修改关闭。在程序需要进行拓展的时候，不能去修改原有的代码，实现一个热插拔的效果。所以一句话概括就是：为了使程序的扩展性好，易于维护和升级。想要达到这样的效果，我们需要使用接口和抽象类，后面的具体设计中我们会提到这点。<br>2、里氏代换原则（Liskov Substitution Principle）<br>里氏代换原则(Liskov Substitution Principle LSP)面向对象设计的基本原则之一。 里氏代换原则中说，任何基类可以出现的地方，子类一定可以出现。 LSP是继承复用的基石，只有当衍生类可以替换掉基类，软件单位的功能不受到影响时，基类才能真正被复用，而衍生类也能够在基类的基础上增加新的行为。里氏代换原则是对“开-闭”原则的补充。实现“开-闭”原则的关键步骤就是抽象化。而基类与子类的继承关系就是抽象化的具体实现，所以里氏代换原则是对实现抽象化的具体步骤的规范。—— From Baidu 百科<br>3、依赖倒转原则（Dependence Inversion Principle）<br>这个是开闭原则的基础，具体内容：真对接口编程，依赖于抽象而不依赖于具体。<br>4、接口隔离原则（Interface Segregation Principle）<br>这个原则的意思是：使用多个隔离的接口，比使用单个接口要好。还是一个降低类之间的耦合度的意思，从这儿我们看出，其实设计模式就是一个软件的设计思想，从大型软件架构出发，为了升级和维护方便。所以上文中多次出现：降低依赖，降低耦合。<br>5、迪米特法则（最少知道原则）（Demeter Principle）<br>为什么叫最少知道原则，就是说：一个实体应当尽量少的与其他实体之间发生相互作用，使得系统功能模块相对独立。<br>6、合成复用原则（Composite Reuse Principle）<br>原则是尽量使用合成/聚合的方式，而不是使用继承。</p>
 <p>三、设计模式类图整合<br>(未完待续……)<br>记1：<br>如果一个聚集的接口提供了可以用来修改聚集元素的方法，这个接口就是所谓的宽接口。</p>
 
@@ -317,31 +318,27 @@
 
 
   
-  <div class="duoshuo">
-	<!-- 多说评论框 start -->
-	<div class="ds-thread" data-thread-key="designPattern" data-title="设计模式整理和浅谈" data-url="wenboshan.github.io/2018/05/15/designPattern/"></div>
-	<!-- 多说评论框 end -->
-	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
-	<script type="text/javascript">
-	var duoshuoQuery = {short_name:"true"};
-	(function() {
-		var ds = document.createElement('script');
-		ds.type = 'text/javascript';ds.async = true;
-		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
-		ds.charset = 'UTF-8';
-		(document.getElementsByTagName('head')[0] 
-		 || document.getElementsByTagName('body')[0]).appendChild(ds);
-	})();
-	</script>
-	<!-- 多说公共JS代码 end -->
-</div>
-
-  
   
   
 
   
 
+  
+    <section id="comments">
+      <div id="disqus_thread"></div>
+        <script type="text/javascript">
+        /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+        var disqus_shortname = 'true'; // required: replace example with your forum shortname
+
+        /* * * DON'T EDIT BELOW THIS LINE * * */
+        (function() {
+          var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+          dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+          (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        })();
+      </script>
+      <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    </section>
   
 
   
@@ -371,7 +368,7 @@
 		isArchive: false,
 		isTag: false,
 		isCategory: false,
-		open_in_new: ,
+		open_in_new: true,
 		toc_hide_index: false,
 		root: "/",
 		innerArchive: true,

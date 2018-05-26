@@ -6,19 +6,20 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="wenboshan.github.io">
-  <title>Archives: 2018 | 文泊山的博客</title>
+  <title>文泊山的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="码农一枚">
+  <meta name="description" content="title: SpringBoot学习（二）tags: - 框架 - 技术  参考文献大部分来自于SpringBoot官方文档，并且一些总结仅代表个人意见，如果看到不正确的地方，可以邮箱交流：wenboshan@aliyun.com，电脑板直接点击左下角邮箱即可。一、结构化代码1.避免使用”default”包；2.SpringBoot建议确定主类，并用@SpringBootApplication">
 <meta name="keywords" content="后端,java">
-<meta property="og:type" content="website">
+<meta property="og:type" content="article">
 <meta property="og:title" content="文泊山的博客">
-<meta property="og:url" content="wenboshan.github.io/archives/2018/index.html">
+<meta property="og:url" content="wenboshan.github.io/2018/05/26/springBootLearning2/index.html">
 <meta property="og:site_name" content="文泊山的博客">
-<meta property="og:description" content="码农一枚">
+<meta property="og:description" content="title: SpringBoot学习（二）tags: - 框架 - 技术  参考文献大部分来自于SpringBoot官方文档，并且一些总结仅代表个人意见，如果看到不正确的地方，可以邮箱交流：wenboshan@aliyun.com，电脑板直接点击左下角邮箱即可。一、结构化代码1.避免使用”default”包；2.SpringBoot建议确定主类，并用@SpringBootApplication">
 <meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2018-05-26T14:06:18.157Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="文泊山的博客">
-<meta name="twitter:description" content="码农一枚">
+<meta name="twitter:description" content="title: SpringBoot学习（二）tags: - 框架 - 技术  参考文献大部分来自于SpringBoot官方文档，并且一些总结仅代表个人意见，如果看到不正确的地方，可以邮箱交流：wenboshan@aliyun.com，电脑板直接点击左下角邮箱即可。一、结构化代码1.避免使用”default”包；2.SpringBoot建议确定主类，并用@SpringBootApplication">
   
     <link rel="alternative" href="/atom.xml" title="文泊山的博客" type="application/atom+xml">
   
@@ -160,246 +161,157 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-springBootLearning2" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
-    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <hr>
+<p>title: SpringBoot学习（二）<br>tags:</p>
+<pre><code>- 框架
+- 技术
+</code></pre><hr>
+<p>参考文献大部分来自于<a href="https://docs.spring.io/spring-boot/docs/current-SNAPSHOT/reference/htmlsingle/#getting-started-first-application" target="_blank" rel="noopener">SpringBoot官方文档</a>，并且一些总结仅代表个人意见，如果看到不正确的地方，可以邮箱交流：<a href="mailto:wenboshan@aliyun.com" target="_blank" rel="noopener">wenboshan@aliyun.com</a>，电脑板直接点击左下角邮箱即可。<br>一、结构化代码<br>1.避免使用”default”包；<br>2.SpringBoot建议确定主类，并用@SpringBootApplication注解修饰，@SpringBootApplication的作用在上一篇已经有解读,SpringBoot提供了一个标准的目录结构参考<br><figure class="highlight routeros"><table><tr><td class="code"><pre><span class="line">com</span><br><span class="line"> +- example</span><br><span class="line">     +- myapplication</span><br><span class="line">         +- Application.java</span><br><span class="line">         |</span><br><span class="line">         +- customer</span><br><span class="line">         |   +- Customer.java</span><br><span class="line">         |   +- CustomerController.java</span><br><span class="line">         |   +- CustomerService.java</span><br><span class="line">         |   +- CustomerRepository.java</span><br><span class="line">         |</span><br><span class="line">         +- order</span><br><span class="line">             +- Order.java</span><br><span class="line">             +- OrderController.java</span><br><span class="line">             +- OrderService.java</span><br><span class="line">             +- OrderRepository.java</span><br></pre></td></tr></table></figure></p>
+<p>二、SpringBoot可以不使用@SpringBootApplication注解，然后通过@import导入需要的类，SpringBoot给出的例子如下：<br><figure class="highlight groovy"><table><tr><td class="code"><pre><span class="line"><span class="keyword">package</span> com.example.myapplication;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> org.springframework.boot.SpringApplication;</span><br><span class="line"><span class="keyword">import</span> org.springframework.context.annotation.ComponentScan</span><br><span class="line"><span class="keyword">import</span> org.springframework.context.annotation.Configuration;</span><br><span class="line"><span class="keyword">import</span> org.springframework.context.annotation.Import;</span><br><span class="line"></span><br><span class="line"><span class="meta">@Configuration</span></span><br><span class="line"><span class="meta">@EnableAutoConfiguration</span></span><br><span class="line"><span class="meta">@Import</span>(&#123; MyConfig.<span class="keyword">class</span>, MyAnotherConfig.<span class="keyword">class</span> &#125;)</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Application</span> &#123;</span></span><br><span class="line"></span><br><span class="line">	<span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> main(String[] args) &#123;</span><br><span class="line">			SpringApplication.run(Application.<span class="keyword">class</span>, args);</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>三、SpringBoot提供了打包成jar包调用http服务的能力，但是如果说要打包成war包的则需要server或者IDE来进行操作；<br>四、SpringBoot提供了基于SpringBoot打包之后的jar包的debug方法<br>五、SpringBoot可以导入环境参数配置：$ export MAVEN_OPTS=-Xmx1024m<br>六、Developer Tools；<br>（1）Property Defaults<br>（2）热重启<br>（3）Logging changes in condition evaluation<br>spring.devtools.restart.log-condition-evaluation-delta=false<br>（4） Excluding Resources<br>（5）spring.devtools.restart.exclude=static/<strong>,public/</strong>，如果想保存默认并且添加额外的去除，你可以使用spring.devtools.restart.additional-exclude<br>（6）如果你想让一些资源热加载的话使用spring.devtools.restart.additional-paths，你也可以使用spring.devtools.restart.exclude去控制那些资源是在完全重启的时候才重新<br>（7）如果你不想使用重新加载的特性的话可以spring.devtools.restart.enabled在application.properties中配置（这样做的话类加载器的文件会初始化，但是会忽视掉文件更改）<br>如果你想完全的禁用掉热加载这个属性的话spring.devtools.restart.enabled.System的属性是false<br><figure class="highlight arduino"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> main(<span class="keyword">String</span>[] args) &#123;</span><br><span class="line">	System.setProperty(<span class="string">"spring.devtools.restart.enabled"</span>, <span class="string">"false"</span>);</span><br><span class="line">	SpringApplication.<span class="built_in">run</span>(MyApp.class, args);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>(8)如果一个使用IDE继续编辑已更改的文件，可以配置一个trigger file,然后当你修改到trigger file才会重启，pring.devtools.restart.trigger-file<br>（9）定制化重启加载器，如果项目是moudles的形式，那么可以配置一个META-INF/spring-devtools.properties文件，里面配置一些需要动态加载的jar<br><figure class="highlight stylus"><table><tr><td class="code"><pre><span class="line">restart<span class="selector-class">.exclude</span><span class="selector-class">.companycommonlibs</span>=/mycorp-common-[\\w-]+\.jar</span><br><span class="line">restart<span class="selector-class">.include</span><span class="selector-class">.projectcommon</span>=/mycorp-myproj-[\\w-]+\.jar</span><br></pre></td></tr></table></figure></p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
       
       
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2018" class="archive-year">2018</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2018/05/26/springBootLearning2/" class="archive-article-date">
-  	<time datetime="2018-05-26T14:04:36.341Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-05-26</time>
-</a>
-        </div>
-    	 
-        <div class="article-info info-on-right">
-          
-          
+      
 
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=http:wenboshan.github.io/2018/05/26/springBootLearning2/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2018/05/26/java程序性能优化1/" class="archive-article-date">
-  	<time datetime="2018-05-26T12:10:39.357Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-05-26</time>
-</a>
+<nav id="article-nav">
+  
+  
+    <a href="/2018/05/26/java程序性能优化1/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">java程序性能优化1</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
         </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/05/26/java程序性能优化1/">java程序性能优化1</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">性能优化</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">技术</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
+        
+        
+        <div class="toc-container tooltip-left">
+            <i class="icon-font icon-category"></i>
+            <div class="tooltip tooltip-east">
+                <span class="tooltip-item">
+                </span>
+                <span class="tooltip-content">
+                    <div class="toc-article">
+                    目录，不存在的…
+                    </div>
+                </span>
+            </div>
         </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
+        
+    </div>
+</aside>
+
+
+
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2018/05/20/springBootLearning/" class="archive-article-date">
-  	<time datetime="2018-05-20T12:41:09.735Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-05-20</time>
-</a>
-        </div>
-    	 
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/05/20/springBootLearning/">SpringBoot学习（一）</a>
-    </h1>
   
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">框架</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">技术</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2018/05/19/thinking/" class="archive-article-date">
-  	<time datetime="2018-05-19T10:47:19.774Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-05-19</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/05/19/thinking/">一些让自己有感触的句子</a>
-    </h1>
   
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">随笔</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2018/05/17/designPattern/" class="archive-article-date">
-  	<time datetime="2018-05-17T06:17:52.491Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-05-17</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/05/17/designPattern/">设计模式整理和浅谈</a>
-    </h1>
+    <section id="comments">
+      <div id="disqus_thread"></div>
+        <script type="text/javascript">
+        /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+        var disqus_shortname = 'true'; // required: replace example with your forum shortname
+
+        /* * * DON'T EDIT BELOW THIS LINE * * */
+        (function() {
+          var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+          dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+          (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        })();
+      </script>
+      <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    </section>
   
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">设计模式</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">技术</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2018/05/06/index/" class="archive-article-date">
-  	<time datetime="2018-05-06T14:58:25.269Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-05-06</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/05/06/index/">I am coming</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">随笔</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
-  
-
-    
-
 
 
           </div>
@@ -422,8 +334,8 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: true,

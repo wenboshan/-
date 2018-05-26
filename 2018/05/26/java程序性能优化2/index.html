@@ -6,20 +6,20 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="wenboshan.github.io">
-  <title>设计模式整理和浅谈 | 文泊山的博客</title>
+  <title>java程序性能优化2 | 文泊山的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="设计模式（Design pattern）是一套被反复使用、多数人知晓的、经过分类编目的、代码设计经验的总结。使用设计模式是为了可重用代码、让代码更容易被他人理解、保证代码可靠性。 毫无疑问，设计模式于己于他人于系统都是多赢的，设计模式使代码编制真正工程化，设计模式是软件工程的基石，如同大厦的一块块砖石一样。项目中合理的运用设计模式可以完美的解决很多问题，每种模式在现在中都有相应的原理来与之对应，每">
-<meta name="keywords" content="设计模式,技术">
+  <meta name="description" content="1.单例模式：（1）对于频繁使用的对象，可以省略创建对象所花费的时间，这对于那些重量级对象而言，是非常可观的一笔系统开销。  （速度）（2）由于new操作的次数减少，因而对系统内存的使用频率也会降低，这将会减轻GC的压力，缩短GC停顿时间。（垃圾回收的频率）/** * 简单单例工厂 * @author wenboshan * 简单可靠，但是会增加系统的启动时间 * */public class S">
+<meta name="keywords" content="技术,程序性能优化">
 <meta property="og:type" content="article">
-<meta property="og:title" content="设计模式整理和浅谈">
-<meta property="og:url" content="wenboshan.github.io/2018/05/17/designPattern/index.html">
+<meta property="og:title" content="java程序性能优化2">
+<meta property="og:url" content="wenboshan.github.io/2018/05/26/java程序性能优化2/index.html">
 <meta property="og:site_name" content="文泊山的博客">
-<meta property="og:description" content="设计模式（Design pattern）是一套被反复使用、多数人知晓的、经过分类编目的、代码设计经验的总结。使用设计模式是为了可重用代码、让代码更容易被他人理解、保证代码可靠性。 毫无疑问，设计模式于己于他人于系统都是多赢的，设计模式使代码编制真正工程化，设计模式是软件工程的基石，如同大厦的一块块砖石一样。项目中合理的运用设计模式可以完美的解决很多问题，每种模式在现在中都有相应的原理来与之对应，每">
+<meta property="og:description" content="1.单例模式：（1）对于频繁使用的对象，可以省略创建对象所花费的时间，这对于那些重量级对象而言，是非常可观的一笔系统开销。  （速度）（2）由于new操作的次数减少，因而对系统内存的使用频率也会降低，这将会减轻GC的压力，缩短GC停顿时间。（垃圾回收的频率）/** * 简单单例工厂 * @author wenboshan * 简单可靠，但是会增加系统的启动时间 * */public class S">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2018-05-26T13:58:10.951Z">
+<meta property="og:updated_time" content="2018-05-26T14:43:12.682Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="设计模式整理和浅谈">
-<meta name="twitter:description" content="设计模式（Design pattern）是一套被反复使用、多数人知晓的、经过分类编目的、代码设计经验的总结。使用设计模式是为了可重用代码、让代码更容易被他人理解、保证代码可靠性。 毫无疑问，设计模式于己于他人于系统都是多赢的，设计模式使代码编制真正工程化，设计模式是软件工程的基石，如同大厦的一块块砖石一样。项目中合理的运用设计模式可以完美的解决很多问题，每种模式在现在中都有相应的原理来与之对应，每">
+<meta name="twitter:title" content="java程序性能优化2">
+<meta name="twitter:description" content="1.单例模式：（1）对于频繁使用的对象，可以省略创建对象所花费的时间，这对于那些重量级对象而言，是非常可观的一笔系统开销。  （速度）（2）由于new操作的次数减少，因而对系统内存的使用频率也会降低，这将会减轻GC的压力，缩短GC停顿时间。（垃圾回收的频率）/** * 简单单例工厂 * @author wenboshan * 简单可靠，但是会增加系统的启动时间 * */public class S">
   
     <link rel="alternative" href="/atom.xml" title="文泊山的博客" type="application/atom+xml">
   
@@ -161,35 +161,30 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-designPattern" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-java程序性能优化2" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      设计模式整理和浅谈
+      java程序性能优化2
     </h1>
   
 
         
-        <a href="/2018/05/17/designPattern/" class="archive-article-date">
-  	<time datetime="2018-05-17T06:17:52.491Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-05-17</time>
+        <a href="/2018/05/26/java程序性能优化2/" class="archive-article-date">
+  	<time datetime="2018-05-26T14:37:46.717Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-05-26</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>设计模式（Design pattern）是一套被反复使用、多数人知晓的、经过分类编目的、代码设计经验的总结。使用设计模式是为了可重用代码、让代码更容易被他人理解、保证代码可靠性。 毫无疑问，设计模式于己于他人于系统都是多赢的，设计模式使代码编制真正工程化，设计模式是软件工程的基石，如同大厦的一块块砖石一样。项目中合理的运用设计模式可以完美的解决很多问题，每种模式在现在中都有相应的原理来与之对应，每一个模式描述了一个在我们周围不断重复发生的问题，以及该问题的核心解决方案，这也是它能被广泛应用的原因。<br>本文主要是对设计模式进行一些总结，忽视了一些细节，只是根据自己的学习和经验进行一些总结，仅代表个人意见，如果看到不对的地方，可以邮件交流 <a href="mailto:wenboshan@aliyun.com" target="_blank" rel="noopener">wenboshan@aliyun.com</a>，电脑板直接点击左下角邮箱即可。<br><a id="more"></a></p>
-<h2 id="一、设计模式的分类"><a href="#一、设计模式的分类" class="headerlink" title="一、设计模式的分类  "></a>一、设计模式的分类  </h2><p>创建型模式，共五种：工厂方法模式、抽象工厂模式、单例模式、建造者模式、原型模式。  </p>
-<p>个人看法：<br>创建型模式，是在创建bean类时使用到的设计模式;<br>a.工厂方法模式可以解决频繁创建使用一个类的对象的问题;  </p>
-<p>b.抽象工厂模式可以解决频繁创建使用一类类的对象的问题;<br>c.单例模式可以解决频繁使用频繁创建一个对象的问题;<br>d.建造者模式可以将多个对象进行配置，产品一个新的复杂的对象;<br>e.原型模式是基于cloneable的对象复制；</p>
-<p>结构型模式，共七种：适配器模式、装饰器模式、代理模式、外观模式、桥接模式、组合模式、享元模式。   </p>
-<p>个人看法<br>a.适配器模式：现实生活中电压转换器，usb接口，GUI(AWT)等都是很好的应用，是通过抽象类实现接口并通过抽象的实现接口的方法来实现转化，这样可以解决接口的方法必须全部实现的一个弊端（突然想起的词汇……用词不准确的地方还请谅解）;<br>b.装饰模式，是在原来的类的基础上增加一些方法，做修饰使用，所以在使用的时候需要传入原对象，例如在java.io包下的文件流等类；<br>c.代理模式是第三方代为执行目标类的方法，代理类和目标类实现同一个接口，实现同一个方法；<br>d.外观模式:类似在创建型模式中的建造者模式，不过建造者是产生一个复杂的对象，但是外观模式是创建一个复杂的方法；<br>e.桥接模式:将抽象化与实现化解耦，使得二者可以独立变化，面向接口编程，jdbc接口的实现；<br>f.组合模式:对象层面的递归，在二叉树，链表中使用较多。LinkedList，LinkedHashMap中有使用这个；<br>g.享元模式：jdbc链接池的实现；<br>注1：<br>装饰模式和代理模式的区别:<br> 静态代理模式其对象关系是在编译时就决定了的，但是装饰模式是动态的，静态代理模式在使用的时候不需要在去建造被代理对象，但是装饰模式需要传入一个对象进去，而且根据对象的不用可以进行不一样的操作；  </p>
-<p>行为型模式，共十一种：策略模式、模板方法模式、观察者模式、迭代子模式、责任链模式、命令模式、备忘录模式、状态模式、访问者模式、中介者模式、解释器模式。<br>a.策略模式: 作为一个行为型模式，将算法进行封装，在处理不同的业务的时候使用不同的算法，也是面向接口编程，传入接口排序的实现方式是通过这种方式实现的；<br>b.模板方法模式：在抽象类方法中定义好主方法的模板，然后调用由子类实现的被继承的方法，进而实现父类的掌控子类的作用（这是个控制欲很强的父类吧）；<br>c.观察者模式:被观察类提供一个容器存储观察者的对象，以及必要的注册和删除方法，当被观察者的状态发生变化的时候通知观察者模式,观察者实现必要的被通知方法，个人认为这个大概是通知模式更好……  在jdk中可以通过继承jdk中已有的接口和类快速实现；（但是在单例多线程的应用场景下感觉基本无法使用）<br>d.迭代子模式: 分为迭代角色和聚合角色，通过迭代角色访问聚合角色，将访问过程和具体聚合实现分开。是客户端访问的时候只需要使用迭代角色就可以。如果访问过程发生改变，不需要去更改原有的聚合实现。复合设计模式中的开闭原则；<br>e.责任链模式:责任链模式的意义在于分工，对应迪米特法则，里氏代换原则；<br>f.命令模式: 分开命令和执行者;<br>g.备忘录模式：备份对象，在必要的时候恢复；<br>h.状态模式：指定类在状态不一样的时候进行不一样的操作，可以动态的切换处理问题的方法；<br>i.访问者模式：分为Visitor族，中间类，和元素族，中间类负责提供元素的访问修改等入口。Visitor类提供针对不同元素类的不同访问方法，元素类提供访问方法，通过传入不通的Visitor类实现调用不同的访问方法来实现对元素类的处理，添加访问者容易，被访问者较难，因为要保持设计模式的性质，每一个访问者都需要增加一个属性;<br>j:中介者模式：<br>i:解释器模式：</p>
-<p>注2：<br>策略模式与桥接模式的区别：<br>策略模式作为一种行为型模式，主要是在处理问题的时候通过不同的方法实现，解决客户端的问题；<br>桥接模式作为一种结构型模式，主要是建立一个可以处理不同问题的对象提供给客户端；<br>注3：<br>策略模式与状态模式的区别：<br>策略模式的侧重点在于根据不同的传入对象进行不同的操作，但是状态模式的侧重点在于状态的切换会影响对象的操作，也就是状态模式更加具有时效性；借用我关注的一位前辈的博客中的一段话：<br>策略模式和状态模式最大的区别就是策略模式只是的条件选择只执行一次，而状态模式是随着实例参数（对象实例的状态）的改变不停地更改执行模式。换句话说，策略模式只是在对象初始化的时候更改执行模式，而状态模式是根据对象实例的周期时间而动态地改变对象实例的执行模式。</p>
-<h2 id="二、设计模式的六大原则"><a href="#二、设计模式的六大原则" class="headerlink" title="二、设计模式的六大原则"></a>二、设计模式的六大原则</h2><p>1、开闭原则（Open Close Principle）<br>开闭原则就是说对扩展开放，对修改关闭。在程序需要进行拓展的时候，不能去修改原有的代码，实现一个热插拔的效果。所以一句话概括就是：为了使程序的扩展性好，易于维护和升级。想要达到这样的效果，我们需要使用接口和抽象类，后面的具体设计中我们会提到这点。<br>2、里氏代换原则（Liskov Substitution Principle）<br>里氏代换原则(Liskov Substitution Principle LSP)面向对象设计的基本原则之一。 里氏代换原则中说，任何基类可以出现的地方，子类一定可以出现。 LSP是继承复用的基石，只有当衍生类可以替换掉基类，软件单位的功能不受到影响时，基类才能真正被复用，而衍生类也能够在基类的基础上增加新的行为。里氏代换原则是对“开-闭”原则的补充。实现“开-闭”原则的关键步骤就是抽象化。而基类与子类的继承关系就是抽象化的具体实现，所以里氏代换原则是对实现抽象化的具体步骤的规范。—— From Baidu 百科<br>3、依赖倒转原则（Dependence Inversion Principle）<br>这个是开闭原则的基础，具体内容：真对接口编程，依赖于抽象而不依赖于具体。<br>4、接口隔离原则（Interface Segregation Principle）<br>这个原则的意思是：使用多个隔离的接口，比使用单个接口要好。还是一个降低类之间的耦合度的意思，从这儿我们看出，其实设计模式就是一个软件的设计思想，从大型软件架构出发，为了升级和维护方便。所以上文中多次出现：降低依赖，降低耦合。<br>5、迪米特法则（最少知道原则）（Demeter Principle）<br>为什么叫最少知道原则，就是说：一个实体应当尽量少的与其他实体之间发生相互作用，使得系统功能模块相对独立。<br>6、合成复用原则（Composite Reuse Principle）<br>原则是尽量使用合成/聚合的方式，而不是使用继承。</p>
+        <p>1.单例模式：<br>（1）对于频繁使用的对象，可以省略创建对象所花费的时间，这对于那些重量级对象而言，是非常可观的一笔系统开销。  （速度）<br>（2）由于new操作的次数减少，因而对系统内存的使用频率也会降低，这将会减轻GC的压力，缩短GC停顿时间。（垃圾回收的频率）<br><figure class="highlight cs"><table><tr><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 简单单例工厂</span></span><br><span class="line"><span class="comment"> * @author wenboshan</span></span><br><span class="line"><span class="comment"> * 简单可靠，但是会增加系统的启动时间</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title">Singleton1</span> &#123;</span><br><span class="line">	<span class="comment">//私有化构造方法</span></span><br><span class="line">	<span class="function"><span class="keyword">private</span> <span class="title">Singleton1</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">		System.<span class="keyword">out</span>.println(<span class="string">"singleton is create"</span>);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="comment">//建立对象</span></span><br><span class="line">	<span class="keyword">private</span> <span class="keyword">static</span> Singleton1 instance=<span class="keyword">new</span> Singleton1();</span><br><span class="line">	<span class="comment">//获取对象</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> Singleton1 <span class="title">getInstance</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">		<span class="keyword">return</span> instance;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<figure class="highlight cs"><table><tr><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 普通延迟加载模式</span></span><br><span class="line"><span class="comment"> * @author wenboshan</span></span><br><span class="line"><span class="comment"> *在系统创建时没有额外的开销，但是引入了同步关键字，因为消耗会大一些</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title">Singleton2</span> &#123;</span><br><span class="line">	<span class="function"><span class="keyword">private</span> <span class="title">Singleton2</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">		System.<span class="keyword">out</span>.println(<span class="string">"LazySingleton is create"</span>);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">private</span> <span class="keyword">static</span> Singleton2 instance=<span class="literal">null</span>;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> synchronized Singleton2 <span class="title">getSingleton</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">		<span class="comment">//判断是否存在实例，如果不存在，则新建</span></span><br><span class="line">		<span class="keyword">if</span>(instance==<span class="literal">null</span>) </span><br><span class="line">			instance=<span class="keyword">new</span> Singleton2();</span><br><span class="line">		<span class="keyword">return</span> instance;	</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight cs"><table><tr><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 通过内部类实现单例模式的延迟加载</span></span><br><span class="line"><span class="comment"> * @author wenboshan</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title">Singleton3</span> &#123;</span><br><span class="line">	<span class="function"><span class="keyword">private</span> <span class="title">Singleton3</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">		System.<span class="keyword">out</span>.println(<span class="string">"Singleton3 is create"</span>);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="comment">/**</span></span><br><span class="line"><span class="comment">	 * 内部类</span></span><br><span class="line"><span class="comment">	 * @author superman</span></span><br><span class="line"><span class="comment">	 *</span></span><br><span class="line"><span class="comment">	 */</span></span><br><span class="line">	<span class="keyword">private</span> <span class="keyword">static</span>  <span class="keyword">class</span> <span class="title">SingletonHolder3</span>&#123;</span><br><span class="line">		<span class="keyword">private</span> <span class="keyword">static</span> Singleton3 instance=<span class="keyword">new</span> Singleton3();</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> Singleton3 <span class="title">getInstance</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">		<span class="keyword">return</span> SingletonHolder3.instance;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>(未完待续…)</p>
 
       
 
@@ -203,11 +198,11 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">设计模式</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">技术</a>
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">技术</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">程序性能优化</a>
         		</li>
       		
 		</ul>
@@ -263,7 +258,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//pan.baidu.com/share/qrcode?url=http:wenboshan.github.io/2018/05/17/designPattern/" alt="微信分享二维码">
+      <img src="//pan.baidu.com/share/qrcode?url=http:wenboshan.github.io/2018/05/26/java程序性能优化2/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -277,18 +272,9 @@
   
 <nav id="article-nav">
   
-    <a href="/2018/05/19/thinking/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          一些让自己有感触的句子
-        
-      </div>
-    </a>
   
-  
-    <a href="/2018/05/06/index/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">I am coming</div>
+    <a href="/2018/05/26/java程序性能优化1/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">java程序性能优化1</div>
       <i class="icon-circle-right"></i>
     </a>
   
@@ -315,7 +301,7 @@
                 </span>
                 <span class="tooltip-content">
                     <div class="toc-article">
-                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#一、设计模式的分类"><span class="toc-number">1.</span> <span class="toc-text">一、设计模式的分类  </span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#二、设计模式的六大原则"><span class="toc-number">2.</span> <span class="toc-text">二、设计模式的六大原则</span></a></li></ol>
+                    目录，不存在的…
                     </div>
                 </span>
             </div>

@@ -6,19 +6,20 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="wenboshan.github.io">
-  <title>Tag: 自拍 | 文泊山的博客</title>
+  <title>java程序性能优化1 | 文泊山的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="码农一枚">
-<meta name="keywords" content="后端,java">
-<meta property="og:type" content="website">
-<meta property="og:title" content="文泊山的博客">
-<meta property="og:url" content="wenboshan.github.io/tags/自拍/index.html">
+  <meta name="description" content="1.一般来说，程序的性能一般是通过以下几个方面来表现：执行速度：程序的反映是否迅速，响应时间是否够短；内存分配：内存分配是否合理，是否过多的消耗内存或者存在内存泄露；启动时间：程序从运行到可以正常处理业务需要花费的多长时间；负载承受能力：当系统压力上升时，系统的执行速度，响应时间的上升曲线是否平缓；2.性能的参考指标：执行时间：一段代码从开始运行到运行结束，所使用的时间；CPU时间：函数或者线程占">
+<meta name="keywords" content="性能优化,技术">
+<meta property="og:type" content="article">
+<meta property="og:title" content="java程序性能优化1">
+<meta property="og:url" content="wenboshan.github.io/2018/05/26/java程序性能优化1/index.html">
 <meta property="og:site_name" content="文泊山的博客">
-<meta property="og:description" content="码农一枚">
+<meta property="og:description" content="1.一般来说，程序的性能一般是通过以下几个方面来表现：执行速度：程序的反映是否迅速，响应时间是否够短；内存分配：内存分配是否合理，是否过多的消耗内存或者存在内存泄露；启动时间：程序从运行到可以正常处理业务需要花费的多长时间；负载承受能力：当系统压力上升时，系统的执行速度，响应时间的上升曲线是否平缓；2.性能的参考指标：执行时间：一段代码从开始运行到运行结束，所使用的时间；CPU时间：函数或者线程占">
 <meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2018-05-26T13:58:03.013Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="文泊山的博客">
-<meta name="twitter:description" content="码农一枚">
+<meta name="twitter:title" content="java程序性能优化1">
+<meta name="twitter:description" content="1.一般来说，程序的性能一般是通过以下几个方面来表现：执行速度：程序的反映是否迅速，响应时间是否够短；内存分配：内存分配是否合理，是否过多的消耗内存或者存在内存泄露；启动时间：程序从运行到可以正常处理业务需要花费的多长时间；负载承受能力：当系统压力上升时，系统的执行速度，响应时间的上升曲线是否平缓；2.性能的参考指标：执行时间：一段代码从开始运行到运行结束，所使用的时间；CPU时间：函数或者线程占">
   
     <link rel="alternative" href="/atom.xml" title="文泊山的博客" type="application/atom+xml">
   
@@ -160,65 +161,180 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-java程序性能优化1" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2018" class="archive-year">2018</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2018/05/06/index/" class="archive-article-date">
-  	<time datetime="2018-05-06T14:58:25.269Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-05-06</time>
-</a>
-        </div>
-    	 
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/05/06/index/">I am coming</a>
+    <h1 class="article-title" itemprop="name">
+      java程序性能优化1
     </h1>
   
 
-        <div class="article-info info-on-right">
-          
+        
+        <a href="/2018/05/26/java程序性能优化1/" class="archive-article-date">
+  	<time datetime="2018-05-26T12:10:39.357Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-05-26</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>1.一般来说，程序的性能一般是通过以下几个方面来表现：<br>执行速度：程序的反映是否迅速，响应时间是否够短；<br>内存分配：内存分配是否合理，是否过多的消耗内存或者存在内存泄露；<br>启动时间：程序从运行到可以正常处理业务需要花费的多长时间；<br>负载承受能力：当系统压力上升时，系统的执行速度，响应时间的上升曲线是否平缓；<br>2.性能的参考指标：<br>执行时间：一段代码从开始运行到运行结束，所使用的时间；<br>CPU时间：函数或者线程占用CPU的时间；<br>内存分配：程序在运行时占用的内存空间；<br><a id="more"></a><br>磁盘吞吐量：描述I/O的使用情况；<br>网络吞吐量：描述网络的使用情况；<br>相应时间：系统对某用户行为或者事件做出响应的时间，响应时间越短，性能越好；<br>3.木桶原理和性能瓶颈：<br>木桶原理又称短板理论，一只木桶乘水的多少，取决于木桶壁上最短的一块；<br>4.Amdahl定律：<br>加速比定义：加速比=优化前系统耗时/优化后系统耗时<br><figure class="highlight lisp"><table><tr><td class="code"><pre><span class="line">SpeedUp&lt;=1/(<span class="name">F+</span>(<span class="number">1</span>-F)/N)</span><br></pre></td></tr></table></figure></p>
+<p>F是串行的代码数量，N是CPU的数量<br>5.系统调优的层级<br>设计调优；<br>代码调优；<br>JVM调优；<br>数据库调优：<br>在应用层对SQL语句进行优化<br>对数据库进行优化<br>对数据库软件进行优化  </p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">自拍</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">性能优化</a>
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">随笔</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">技术</a>
         		</li>
       		
 		</ul>
 	</div>
 
-          
+      
 
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=http:wenboshan.github.io/2018/05/26/java程序性能优化1/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
+  
+<nav id="article-nav">
   
   
-    </div></section>
+    <a href="/2018/05/20/springBootLearning/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">SpringBoot学习（一）</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+        <div class="toc-container tooltip-left">
+            <i class="icon-font icon-category"></i>
+            <div class="tooltip tooltip-east">
+                <span class="tooltip-item">
+                </span>
+                <span class="tooltip-content">
+                    <div class="toc-article">
+                    目录，不存在的…
+                    </div>
+                </span>
+            </div>
+        </div>
+        
+    </div>
+</aside>
+
+
+
+  
+  
   
 
-    
+  
 
+  
+    <section id="comments">
+      <div id="disqus_thread"></div>
+        <script type="text/javascript">
+        /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+        var disqus_shortname = 'true'; // required: replace example with your forum shortname
+
+        /* * * DON'T EDIT BELOW THIS LINE * * */
+        (function() {
+          var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+          dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+          (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        })();
+      </script>
+      <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    </section>
+  
+
+  
 
 
           </div>
@@ -241,15 +357,15 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
+		isPost: true,
 		isArchive: false,
-		isTag: true,
+		isTag: false,
 		isCategory: false,
 		open_in_new: true,
 		toc_hide_index: false,
 		root: "/",
 		innerArchive: true,
-		showTags: false
+		showTags: true
 	}
 </script>
 
@@ -311,11 +427,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">自拍</a>
+                <a href="javascript:void(0)" class="js-tag color3">随笔</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">随笔</a>
+                <a href="javascript:void(0)" class="js-tag color3">自拍</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -328,6 +444,14 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">设计模式</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">性能优化</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">技术</a>
               </li>
             
             <div class="clearfix"></div>

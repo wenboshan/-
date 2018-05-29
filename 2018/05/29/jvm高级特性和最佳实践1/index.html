@@ -6,19 +6,20 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="wenboshan.github.io">
-  <title>文泊山的博客</title>
+  <title>垃圾收集器与内存分配策略 | 文泊山的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="码农一枚">
-<meta name="keywords" content="后端,java">
-<meta property="og:type" content="website">
-<meta property="og:title" content="文泊山的博客">
-<meta property="og:url" content="wenboshan.github.io/index.html">
+  <meta name="description" content="java与C++之间有一堵由内存动态分配和垃圾收集技术所围成的”高墙”，墙外面的人想进来，墙里面的人想出去。GC(Garbage Collection)所需要考虑的三大问题，那些内存需要回收，什么时候回收，如何回收。Java内存运行时的区域的各个部分中，程序计数器、虚拟机栈、本地方法栈3个区域随线程而生，随线程而灭；栈中的栈帧随着方法的进入和退出而有条不紊地执行着出栈和入栈操作。每一个栈帧中分配多">
+<meta name="keywords" content="技术,jvm">
+<meta property="og:type" content="article">
+<meta property="og:title" content="垃圾收集器与内存分配策略">
+<meta property="og:url" content="wenboshan.github.io/2018/05/29/jvm高级特性和最佳实践1/index.html">
 <meta property="og:site_name" content="文泊山的博客">
-<meta property="og:description" content="码农一枚">
+<meta property="og:description" content="java与C++之间有一堵由内存动态分配和垃圾收集技术所围成的”高墙”，墙外面的人想进来，墙里面的人想出去。GC(Garbage Collection)所需要考虑的三大问题，那些内存需要回收，什么时候回收，如何回收。Java内存运行时的区域的各个部分中，程序计数器、虚拟机栈、本地方法栈3个区域随线程而生，随线程而灭；栈中的栈帧随着方法的进入和退出而有条不紊地执行着出栈和入栈操作。每一个栈帧中分配多">
 <meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2018-05-29T12:35:12.096Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="文泊山的博客">
-<meta name="twitter:description" content="码农一枚">
+<meta name="twitter:title" content="垃圾收集器与内存分配策略">
+<meta name="twitter:description" content="java与C++之间有一堵由内存动态分配和垃圾收集技术所围成的”高墙”，墙外面的人想进来，墙里面的人想出去。GC(Garbage Collection)所需要考虑的三大问题，那些内存需要回收，什么时候回收，如何回收。Java内存运行时的区域的各个部分中，程序计数器、虚拟机栈、本地方法栈3个区域随线程而生，随线程而灭；栈中的栈帧随着方法的进入和退出而有条不紊地执行着出栈和入栈操作。每一个栈帧中分配多">
   
     <link rel="alternative" href="/atom.xml" title="文泊山的博客" type="application/atom+xml">
   
@@ -160,16 +161,14 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-    <article id="post-jvm高级特性和最佳实践1" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+            <article id="post-jvm高级特性和最佳实践1" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/05/29/jvm高级特性和最佳实践1/">垃圾收集器与内存分配策略</a>
+    <h1 class="article-title" itemprop="name">
+      垃圾收集器与内存分配策略
     </h1>
   
 
@@ -185,10 +184,33 @@
         <p>java与C++之间有一堵由内存动态分配和垃圾收集技术所围成的”高墙”，墙外面的人想进来，墙里面的人想出去。<br>GC(Garbage Collection)所需要考虑的三大问题，那些内存需要回收，什么时候回收，如何回收。<br>Java内存运行时的区域的各个部分中，程序计数器、虚拟机栈、本地方法栈3个区域随线程而生，随线程而灭；栈中的栈帧随着方法的进入和退出而有条不紊地执行着出栈和入栈操作。每一个栈帧中分配多少内存基本上是在类结构确定下来时就已知的（尽管运行期会由JIT编译器进行一些优化）；<br>确定对象是否死亡的算法：  </p>
 <ol>
 <li>引用计数算法：在对象中添加引用计数器，当被引用时，计数器+1；当引用失效时，计数器-1；任何时刻计数器为0的对象都是不可能再被使用的，但是无法解决对象之间互相引用的问题，并且这种收集算法在java中是没有被使用的；</li>
-<li>可达性分析算法：  当一个对象到GC Roots没有任何引用链接相连时，则证明此对象是不可用的；  在Java语言中，可以作为GC Roots的对象包括以下几种：a,虚拟机栈（栈帧中的本地变量表）中引用的对象；b,方法区中静态属性引用的对象从;c,方法区中常量引用的对象；d,本地方法栈中JNI(即一般说的Native方法)引用的对象。
-        
-          <a class="article-more-a" href="/2018/05/29/jvm高级特性和最佳实践1/#more">more >></a>
-        
+<li>可达性分析算法：  当一个对象到GC Roots没有任何引用链接相连时，则证明此对象是不可用的；  在Java语言中，可以作为GC Roots的对象包括以下几种：a,虚拟机栈（栈帧中的本地变量表）中引用的对象；b,方法区中静态属性引用的对象从;c,方法区中常量引用的对象；d,本地方法栈中JNI(即一般说的Native方法)引用的对象。   <a id="more"></a>   
+</li>
+</ol>
+<p>引用：java中的引用定义，如果reference类型的数据中存储的数值代表的另一块内存的起始地址，就称这块内存代表着一个引用；  </p>
+<ol>
+<li>强引用：指在程序代码之中普遍存在的，类似”Object obj=new Object”这类的引用，只要强引用还在，垃圾回收器永远不会回收掉被引用的对象，；  </li>
+<li>软引用：用来描述一些还有用但并非必需的对象。  在系统将要发生内存溢出异常之前，将会把这些对象列进回收范围之中进行第二次回收。如果这次回收还没有足够的内存，才会抛出内存溢出异常，在JDK1.2以后，提供了SoftReferrnce类来实现软引用；  </li>
+<li>弱引用：是用来描述非必要对象的。只能生存到下一次垃圾收集发生之前。当垃圾收集器工作时，无论当前内存是否足够，都只会回收掉只被弱引用关联的对象，在JDK1.2之后，提供了WeakReference类实现弱引用。  </li>
+<li>虚引用：也称为幽灵引用或者幻影引用，它是最弱的一种引用关系。一个对象是否有虚引用的存在，完全不会对其生存时间构成影响，也无法通过虚引用来取得一个对象实例。为一个对象设置虚引用关联的唯一目的就是能在这个对象被收集器回收时收到一个系统通知。在JDK1.2之后，提供了PhantomReference类来实现虚引用；  </li>
+</ol>
+<p>即使在可达性分析算法中不可达的对象，也并非是“非死不可”的，这时候它们暂时处于缓刑阶段，要真正宣告一个对象死亡，至少要经历两次标记过程：如果对象在进行可达性分析后发现没有与GC Roots相关联的引用链，那它将会被第一次标记并且进行一次筛选，筛选的条件是此对象是否有必要执行finalize()方法。当对象没有覆盖finalize()方法，或者finalize()方法已经被虚拟机调用过，虚拟机将这两种情况都视为“没有必要执行”；  </p>
+<p>回收方法区，方法区的回收效率比较低，主要需要回收的是废弃常量和无用的类，废弃常量是没有任何地方引用这个常量，也没有其他地方引用了这个字面量；废弃类需要同时满足3个条件才可以（不是必然）被回收：  </p>
+<ol>
+<li>该类所有的实例都已经被回收，也就是java堆中不存在该类的任何实例；</li>
+<li>记载该类的ClassLoader已经被回收；</li>
+<li>该类对应的java.lang.Class对象没有在任何地方被引用，无法在任何地方通过反射访问该类的方法。<br>垃圾收集算法  </li>
+<li>标记清除算法：标记然后清除，缺点在于一是效率比较低，二是空间问题，标记清除之后会产生大量不连续的空间碎片；  </li>
+<li>复制算法：复制需要清除的对象到另一块区域进行统一清除。实现简单，运行高效，但是占用空间。 现在商业虚拟机都采用这种收集算法来回收新生代； </li>
+<li>标记-整理算法：标记后将所有存活的对象向一端移动，然后直接清理掉端边界以外的内存。  </li>
+<li>分代收集算法： 当前商业虚拟机都在使用的算法，只是将内存分块，针对不同的区域采取不同的算法进行垃圾回收；  </li>
+</ol>
+<p>HotSpot算法实现  </p>
+<ol>
+<li>枚举根节点：GC Roots需要在分析是否需要被回收的时候保持系统的停顿。检查通过OopMap存储的数据来达到分析分析是否需要回收的目的；OopMap是在指定的地方生成生成的，可以节省一些生成OopMap的开销；</li>
+<li>安全点： 仅仅在指定位置记录OopMap，称为安全点，SafePoint，减少记录OopMap的开销。对于如何在GC发生时让所有线程（不包括执行JNI调用的线程）都到安全点再停顿下来，有两种方案可供选择，一是抢先式中断，一种是主动式中断。现在主要的是使用主动式中断。  </li>
+</ol>
+
       
 
       
@@ -214,16 +236,75 @@
       
 
       
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2018/05/29/jvm高级特性和最佳实践1/">展开全文 >></a>
-        </p>
-      
 
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
+        </div>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=http:wenboshan.github.io/2018/05/29/jvm高级特性和最佳实践1/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
       
       <div class="clearfix"></div>
     </div>
   </div>
 </article>
+
+  
+<nav id="article-nav">
+  
+  
+    <a href="/2018/05/27/theEnd/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">故事的最终章</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
 
 <aside class="wrap-side-operation">
     <div class="mod-side-operation">
@@ -238,560 +319,48 @@
         </div>
         
         
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-theEnd" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/05/27/theEnd/">故事的最终章</a>
-    </h1>
-  
-
-        
-        <a href="/2018/05/27/theEnd/" class="archive-article-date">
-  	<time datetime="2018-05-27T08:44:19.872Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-05-27</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>故事的最终章，没有王子和公主的相遇，只有一个人悄悄走开，公主依然在那里等待她真正的王子。离开的人做不到忍辱偷生，只能默默的祝福过公主。然后踏上找寻属于自己的公主的道路。<br><img src="https://wx3.sinaimg.cn/mw690/0078OFLCgy1frq0bof3n4j30ia0iah47.jpg" alt="Alt text"><br>
-        
-          <a class="article-more-a" href="/2018/05/27/theEnd/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">随笔</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2018/05/27/theEnd/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
+        <div class="toc-container tooltip-left">
+            <i class="icon-font icon-category"></i>
+            <div class="tooltip tooltip-east">
+                <span class="tooltip-item">
+                </span>
+                <span class="tooltip-content">
+                    <div class="toc-article">
+                    目录，不存在的…
+                    </div>
+                </span>
             </div>
         </div>
         
-        
     </div>
 </aside>
 
 
 
-
   
-    <article id="post-java程序性能优化2" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
   
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/05/26/java程序性能优化2/">java程序性能优化2</a>
-    </h1>
   
 
-        
-        <a href="/2018/05/26/java程序性能优化2/" class="archive-article-date">
-  	<time datetime="2018-05-26T14:37:46.717Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-05-26</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>1.单例模式：<br>（1）对于频繁使用的对象，可以省略创建对象所花费的时间，这对于那些重量级对象而言，是非常可观的一笔系统开销。  （速度）<br>（2）由于new操作的次数减少，因而对系统内存的使用频率也会降低，这将会减轻GC的压力，缩短GC停顿时间。（垃圾回收的频率）<br>
-        
-          <a class="article-more-a" href="/2018/05/26/java程序性能优化2/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">程序性能优化</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">技术</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2018/05/26/java程序性能优化2/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-java程序性能优化1" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/05/26/java程序性能优化1/">java程序性能优化1</a>
-    </h1>
   
 
-        
-        <a href="/2018/05/26/java程序性能优化1/" class="archive-article-date">
-  	<time datetime="2018-05-26T12:10:39.357Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-05-26</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>本文仅代表个人意见，如果看到不对的地方，可以邮件交流 <a href="mailto:wenboshan@aliyun.com" target="_blank" rel="noopener">wenboshan@aliyun.com</a>，电脑板直接点击左下角邮箱即可。<br>1.一般来说，程序的性能一般是通过以下几个方面来表现：<br>执行速度：程序的反映是否迅速，响应时间是否够短；<br>内存分配：内存分配是否合理，是否过多的消耗内存或者存在内存泄露；<br>启动时间：程序从运行到可以正常处理业务需要花费的多长时间；<br>负载承受能力：当系统压力上升时，系统的执行速度，响应时间的上升曲线是否平缓；<br>2.性能的参考指标：<br>执行时间：一段代码从开始运行到运行结束，所使用的时间；<br>CPU时间：函数或者线程占用CPU的时间；<br>内存分配：程序在运行时占用的内存空间；<br>
-        
-          <a class="article-more-a" href="/2018/05/26/java程序性能优化1/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">程序性能优化</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">技术</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2018/05/26/java程序性能优化1/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
   
-    <article id="post-springBootLearning" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/05/20/springBootLearning/">SpringBoot学习（一）</a>
-    </h1>
+    <section id="comments">
+      <div id="disqus_thread"></div>
+        <script type="text/javascript">
+        /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+        var disqus_shortname = 'true'; // required: replace example with your forum shortname
+
+        /* * * DON'T EDIT BELOW THIS LINE * * */
+        (function() {
+          var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+          dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+          (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        })();
+      </script>
+      <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    </section>
   
 
-        
-        <a href="/2018/05/20/springBootLearning/" class="archive-article-date">
-  	<time datetime="2018-05-20T12:41:09.735Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-05-20</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>之前一直是通过百度或者看曾经的一些前辈的视频来学习一些东西，现在想试着去通过自己去看一些文档或者文献去了解一样东西。试读了SpringBoot的开发文档，似乎有了翻译器的帮助也没有那么难了。整理自己今天收获的东西。<br>ps:参考文献大部分来自于<a href="https://docs.spring.io/spring-boot/docs/current-SNAPSHOT/reference/htmlsingle/#getting-started-first-application" target="_blank" rel="noopener">SpringBoot官方文档</a>，并且一些总结仅代表个人意见，如果看到不正确的地方，可以邮箱交流：<a href="mailto:wenboshan@aliyun.com" target="_blank" rel="noopener">wenboshan@aliyun.com</a>，电脑板直接点击左下角邮箱即可。</p>
-<p>一、SpringBoot 建议使用配置类替代配置文件，SpringBoot建议在使用的用Enable*去快或许适合类，不过如果非要使用xml也可以，可以用@ImportResource注解去加载xml类。<br>
-        
-          <a class="article-more-a" href="/2018/05/20/springBootLearning/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">技术</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">框架</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2018/05/20/springBootLearning/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-thinking" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/05/19/thinking/">一些让自己有感触的句子</a>
-    </h1>
-  
-
-        
-        <a href="/2018/05/19/thinking/" class="archive-article-date">
-  	<time datetime="2018-05-19T10:47:19.774Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-05-19</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>工作总是忙碌，每天重复着一样的工作，我一度认为自己是个技术工，和工作线上的流水工一样，写着流水一样的代码，干着别人都可以替代的工作，我为此感到悲伤也感到惶恐。但是我并不愤世嫉俗，不了解自己，但是有时候当一个小角色未必是什么坏事。<br>希望当我下次心情低落或者无所适从的时候可以看到这些东西，如果你恰好看到，愿与君共勉。<br>
-        
-          <a class="article-more-a" href="/2018/05/19/thinking/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">随笔</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2018/05/19/thinking/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-designPattern" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/05/17/designPattern/">设计模式整理和浅谈</a>
-    </h1>
-  
-
-        
-        <a href="/2018/05/17/designPattern/" class="archive-article-date">
-  	<time datetime="2018-05-17T06:17:52.491Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-05-17</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>设计模式（Design pattern）是一套被反复使用、多数人知晓的、经过分类编目的、代码设计经验的总结。使用设计模式是为了可重用代码、让代码更容易被他人理解、保证代码可靠性。 毫无疑问，设计模式于己于他人于系统都是多赢的，设计模式使代码编制真正工程化，设计模式是软件工程的基石，如同大厦的一块块砖石一样。项目中合理的运用设计模式可以完美的解决很多问题，每种模式在现在中都有相应的原理来与之对应，每一个模式描述了一个在我们周围不断重复发生的问题，以及该问题的核心解决方案，这也是它能被广泛应用的原因。<br>本文主要是对设计模式进行一些总结，忽视了一些细节，只是根据自己的学习和经验进行一些总结，仅代表个人意见，如果看到不对的地方，可以邮件交流 <a href="mailto:wenboshan@aliyun.com" target="_blank" rel="noopener">wenboshan@aliyun.com</a>，电脑板直接点击左下角邮箱即可。<br>
-        
-          <a class="article-more-a" href="/2018/05/17/designPattern/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">技术</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">设计模式</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2018/05/17/designPattern/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-index" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/05/06/index/">I am coming</a>
-    </h1>
-  
-
-        
-        <a href="/2018/05/06/index/" class="archive-article-date">
-  	<time datetime="2018-05-06T14:58:25.269Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-05-06</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>以后，打算在<a href="/">这里</a>安家啦<br>最近时间很紧张，有时间希望可以再好好收拾一下这个新家！<br><img src="https://wx4.sinaimg.cn/mw690/0078OFLCgy1fr6bnam6f9j30u00mh444.jpg" alt="Alt text"></p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">随笔</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2018/05/06/index/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
   
 
 
@@ -814,8 +383,8 @@
     <script>
 	var yiliaConfig = {
 		mathjax: false,
-		isHome: true,
-		isPost: false,
+		isHome: false,
+		isPost: true,
 		isArchive: false,
 		isTag: false,
 		isCategory: false,

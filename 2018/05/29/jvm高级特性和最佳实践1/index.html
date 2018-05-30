@@ -9,14 +9,14 @@
   <title>垃圾收集器与内存分配策略 | 文泊山的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="description" content="java与C++之间有一堵由内存动态分配和垃圾收集技术所围成的”高墙”，墙外面的人想进来，墙里面的人想出去。GC(Garbage Collection)所需要考虑的三大问题，那些内存需要回收，什么时候回收，如何回收。Java内存运行时的区域的各个部分中，程序计数器、虚拟机栈、本地方法栈3个区域随线程而生，随线程而灭；栈中的栈帧随着方法的进入和退出而有条不紊地执行着出栈和入栈操作。每一个栈帧中分配多">
-<meta name="keywords" content="技术,jvm">
+<meta name="keywords" content="技术,虚拟机">
 <meta property="og:type" content="article">
 <meta property="og:title" content="垃圾收集器与内存分配策略">
 <meta property="og:url" content="wenboshan.github.io/2018/05/29/jvm高级特性和最佳实践1/index.html">
 <meta property="og:site_name" content="文泊山的博客">
 <meta property="og:description" content="java与C++之间有一堵由内存动态分配和垃圾收集技术所围成的”高墙”，墙外面的人想进来，墙里面的人想出去。GC(Garbage Collection)所需要考虑的三大问题，那些内存需要回收，什么时候回收，如何回收。Java内存运行时的区域的各个部分中，程序计数器、虚拟机栈、本地方法栈3个区域随线程而生，随线程而灭；栈中的栈帧随着方法的进入和退出而有条不紊地执行着出栈和入栈操作。每一个栈帧中分配多">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2018-05-29T12:35:12.096Z">
+<meta property="og:updated_time" content="2018-05-30T06:46:52.809Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="垃圾收集器与内存分配策略">
 <meta name="twitter:description" content="java与C++之间有一堵由内存动态分配和垃圾收集技术所围成的”高墙”，墙外面的人想进来，墙里面的人想出去。GC(Garbage Collection)所需要考虑的三大问题，那些内存需要回收，什么时候回收，如何回收。Java内存运行时的区域的各个部分中，程序计数器、虚拟机栈、本地方法栈3个区域随线程而生，随线程而灭；栈中的栈帧随着方法的进入和退出而有条不紊地执行着出栈和入栈操作。每一个栈帧中分配多">
@@ -183,9 +183,8 @@
       
         <p>java与C++之间有一堵由内存动态分配和垃圾收集技术所围成的”高墙”，墙外面的人想进来，墙里面的人想出去。<br>GC(Garbage Collection)所需要考虑的三大问题，那些内存需要回收，什么时候回收，如何回收。<br>Java内存运行时的区域的各个部分中，程序计数器、虚拟机栈、本地方法栈3个区域随线程而生，随线程而灭；栈中的栈帧随着方法的进入和退出而有条不紊地执行着出栈和入栈操作。每一个栈帧中分配多少内存基本上是在类结构确定下来时就已知的（尽管运行期会由JIT编译器进行一些优化）；<br>确定对象是否死亡的算法：  </p>
 <ol>
-<li>引用计数算法：在对象中添加引用计数器，当被引用时，计数器+1；当引用失效时，计数器-1；任何时刻计数器为0的对象都是不可能再被使用的，但是无法解决对象之间互相引用的问题，并且这种收集算法在java中是没有被使用的；</li>
-<li>可达性分析算法：  当一个对象到GC Roots没有任何引用链接相连时，则证明此对象是不可用的；  在Java语言中，可以作为GC Roots的对象包括以下几种：a,虚拟机栈（栈帧中的本地变量表）中引用的对象；b,方法区中静态属性引用的对象从;c,方法区中常量引用的对象；d,本地方法栈中JNI(即一般说的Native方法)引用的对象。   <a id="more"></a>   
-</li>
+<li>引用计数算法：在对象中添加引用计数器，当被引用时，计数器+1；当引用失效时，计数器-1；任何时刻计数器为0的对象都是不可能再被使用的，但是无法解决对象之间互相引用的问题，并且这种收集算法在java中是没有被使用的；<a id="more"></a> </li>
+<li>可达性分析算法：  当一个对象到GC Roots没有任何引用链接相连时，则证明此对象是不可用的；  在Java语言中，可以作为GC Roots的对象包括以下几种：a,虚拟机栈（栈帧中的本地变量表）中引用的对象；b,方法区中静态属性引用的对象从;c,方法区中常量引用的对象；d,本地方法栈中JNI(即一般说的Native方法)引用的对象。 </li>
 </ol>
 <p>引用：java中的引用定义，如果reference类型的数据中存储的数值代表的另一块内存的起始地址，就称这块内存代表着一个引用；  </p>
 <ol>
@@ -208,7 +207,18 @@
 <p>HotSpot算法实现  </p>
 <ol>
 <li>枚举根节点：GC Roots需要在分析是否需要被回收的时候保持系统的停顿。检查通过OopMap存储的数据来达到分析分析是否需要回收的目的；OopMap是在指定的地方生成生成的，可以节省一些生成OopMap的开销；</li>
-<li>安全点： 仅仅在指定位置记录OopMap，称为安全点，SafePoint，减少记录OopMap的开销。对于如何在GC发生时让所有线程（不包括执行JNI调用的线程）都到安全点再停顿下来，有两种方案可供选择，一是抢先式中断，一种是主动式中断。现在主要的是使用主动式中断。  </li>
+<li>安全点： 仅仅在指定位置记录OopMap，称为安全点，SafePoint，减少记录OopMap的开销。对于如何在GC发生时让所有线程（不包括执行JNI调用的线程）都到安全点再停顿下来，有两种方案可供选择，一是抢先式中断，一种是主动式中断。现在主要的是使用主动式中断。 </li>
+<li>安全区域：Safe Region ,放大的安全点。  </li>
+</ol>
+<p>垃圾收集器：  </p>
+<ol>
+<li>Serial收集器：单线程收集器，在它收集的时候必须停掉其他所有的工作线程，直到它收集结束，采用复制算法；  </li>
+<li>parNew收集器：多线程收集器，Serial收集器的多线程版本，可以与CMS收集器合作，采用复制算法；  </li>
+<li>Parallel Scavenge收集器：其目标是达到一个可控制的吞吐量，吞吐量=运行用户代码时间/（运行用户代码时间+垃圾收集时间），采用复制算法；  </li>
+<li>Serial Old收集器：是Serial收集器的老年代版本，使用标记-整理算法，有两大用途，一是在JDK1.5以及之前的版本中与Parallel Scavenge收集器搭配使用，另一种用是作为CMS收集器的后备预案；  </li>
+<li>Parallel Old是Parallel Scanvege收集器的老年版本，使用多线程和标记-整理算法。  </li>
+<li>CMS收集器是一种以获取最短回收停顿时间为目标的收集器。基于标记-清除算法，分为初始标记，并发标记，重新标记，并发清除。但是CMS有一些缺点，CMS收集器对CPU资源非常敏感；CMS收集器无法处理浮动垃圾；可能会产生很多空间碎片；  </li>
+<li>G1收集器：特点：并行与并发；分代收集；空间整合；可预测的停顿；</li>
 </ol>
 
       
@@ -227,7 +237,7 @@
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">jvm</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">虚拟机</a>
         		</li>
       		
 		</ul>
@@ -475,6 +485,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">jvm</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">虚拟机</a>
               </li>
             
             <div class="clearfix"></div>

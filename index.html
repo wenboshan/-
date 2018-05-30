@@ -184,8 +184,7 @@
       
         <p>java与C++之间有一堵由内存动态分配和垃圾收集技术所围成的”高墙”，墙外面的人想进来，墙里面的人想出去。<br>GC(Garbage Collection)所需要考虑的三大问题，那些内存需要回收，什么时候回收，如何回收。<br>Java内存运行时的区域的各个部分中，程序计数器、虚拟机栈、本地方法栈3个区域随线程而生，随线程而灭；栈中的栈帧随着方法的进入和退出而有条不紊地执行着出栈和入栈操作。每一个栈帧中分配多少内存基本上是在类结构确定下来时就已知的（尽管运行期会由JIT编译器进行一些优化）；<br>确定对象是否死亡的算法：  </p>
 <ol>
-<li>引用计数算法：在对象中添加引用计数器，当被引用时，计数器+1；当引用失效时，计数器-1；任何时刻计数器为0的对象都是不可能再被使用的，但是无法解决对象之间互相引用的问题，并且这种收集算法在java中是没有被使用的；</li>
-<li>可达性分析算法：  当一个对象到GC Roots没有任何引用链接相连时，则证明此对象是不可用的；  在Java语言中，可以作为GC Roots的对象包括以下几种：a,虚拟机栈（栈帧中的本地变量表）中引用的对象；b,方法区中静态属性引用的对象从;c,方法区中常量引用的对象；d,本地方法栈中JNI(即一般说的Native方法)引用的对象。
+<li>引用计数算法：在对象中添加引用计数器，当被引用时，计数器+1；当引用失效时，计数器-1；任何时刻计数器为0的对象都是不可能再被使用的，但是无法解决对象之间互相引用的问题，并且这种收集算法在java中是没有被使用的；
         
           <a class="article-more-a" href="/2018/05/29/jvm高级特性和最佳实践1/#more">more >></a>
         
@@ -205,7 +204,7 @@
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">jvm</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">虚拟机</a>
         		</li>
       		
 		</ul>
@@ -906,6 +905,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">jvm</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">虚拟机</a>
               </li>
             
             <div class="clearfix"></div>

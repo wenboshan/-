@@ -6,22 +6,22 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="wenboshan.github.io">
-  <title>垃圾收集器与内存分配策略 | 文泊山的博客</title>
+  <title>垃圾收集器与内存分配策略1 | 猫蔓生活</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="description" content="java与C++之间有一堵由内存动态分配和垃圾收集技术所围成的”高墙”，墙外面的人想进来，墙里面的人想出去。GC(Garbage Collection)所需要考虑的三大问题，那些内存需要回收，什么时候回收，如何回收。Java内存运行时的区域的各个部分中，程序计数器、虚拟机栈、本地方法栈3个区域随线程而生，随线程而灭；栈中的栈帧随着方法的进入和退出而有条不紊地执行着出栈和入栈操作。每一个栈帧中分配多">
 <meta name="keywords" content="技术,虚拟机">
 <meta property="og:type" content="article">
-<meta property="og:title" content="垃圾收集器与内存分配策略">
+<meta property="og:title" content="垃圾收集器与内存分配策略1">
 <meta property="og:url" content="wenboshan.github.io/2018/05/29/jvm高级特性和最佳实践1/index.html">
-<meta property="og:site_name" content="文泊山的博客">
+<meta property="og:site_name" content="猫蔓生活">
 <meta property="og:description" content="java与C++之间有一堵由内存动态分配和垃圾收集技术所围成的”高墙”，墙外面的人想进来，墙里面的人想出去。GC(Garbage Collection)所需要考虑的三大问题，那些内存需要回收，什么时候回收，如何回收。Java内存运行时的区域的各个部分中，程序计数器、虚拟机栈、本地方法栈3个区域随线程而生，随线程而灭；栈中的栈帧随着方法的进入和退出而有条不紊地执行着出栈和入栈操作。每一个栈帧中分配多">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2018-05-30T06:46:52.809Z">
+<meta property="og:updated_time" content="2018-05-30T06:48:47.504Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="垃圾收集器与内存分配策略">
+<meta name="twitter:title" content="垃圾收集器与内存分配策略1">
 <meta name="twitter:description" content="java与C++之间有一堵由内存动态分配和垃圾收集技术所围成的”高墙”，墙外面的人想进来，墙里面的人想出去。GC(Garbage Collection)所需要考虑的三大问题，那些内存需要回收，什么时候回收，如何回收。Java内存运行时的区域的各个部分中，程序计数器、虚拟机栈、本地方法栈3个区域随线程而生，随线程而灭；栈中的栈帧随着方法的进入和退出而有条不紊地执行着出栈和入栈操作。每一个栈帧中分配多">
   
-    <link rel="alternative" href="/atom.xml" title="文泊山的博客" type="application/atom+xml">
+    <link rel="alternative" href="/atom.xml" title="猫蔓生活" type="application/atom+xml">
   
   
     <link rel="icon" href="/favicon.png">
@@ -168,7 +168,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      垃圾收集器与内存分配策略
+      垃圾收集器与内存分配策略1
     </h1>
   
 
@@ -218,7 +218,7 @@
 <li>Serial Old收集器：是Serial收集器的老年代版本，使用标记-整理算法，有两大用途，一是在JDK1.5以及之前的版本中与Parallel Scavenge收集器搭配使用，另一种用是作为CMS收集器的后备预案；  </li>
 <li>Parallel Old是Parallel Scanvege收集器的老年版本，使用多线程和标记-整理算法。  </li>
 <li>CMS收集器是一种以获取最短回收停顿时间为目标的收集器。基于标记-清除算法，分为初始标记，并发标记，重新标记，并发清除。但是CMS有一些缺点，CMS收集器对CPU资源非常敏感；CMS收集器无法处理浮动垃圾；可能会产生很多空间碎片；  </li>
-<li>G1收集器：特点：并行与并发；分代收集；空间整合；可预测的停顿；</li>
+<li>G1收集器：特点：并行与并发；分代收集；空间整合；可预测的停顿；<br>（未完待续……）</li>
 </ol>
 
       

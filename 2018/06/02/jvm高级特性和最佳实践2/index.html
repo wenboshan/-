@@ -6,19 +6,22 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="wenboshan.github.io">
-  <title>Tag: 程序性能优化 | 猫蔓生活</title>
+  <title>垃圾收集器与内存分配策略2 | 猫蔓生活</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="码农一枚">
-<meta name="keywords" content="后端 技术">
-<meta property="og:type" content="website">
-<meta property="og:title" content="猫蔓生活">
-<meta property="og:url" content="wenboshan.github.io/tags/程序性能优化/index.html">
+  <meta name="description" content="（本文仅代表个人意见，如果看到不对的地方，可以邮件交流 wenboshan@aliyun.com，电脑板直接点击左下角邮箱即可）    垃圾收集算法  标记清除算法：标记然后清除，缺点在于一是效率比较低，二是空间问题，标记清除之后会产生大量不连续的空间碎片；   复制算法：复制需要清除的对象到另一块区域进行统一清除。实现简单，运行高效，但是占用空间(需要有Eden区和Survivor的划分)。 现">
+<meta name="keywords" content="技术,虚拟机">
+<meta property="og:type" content="article">
+<meta property="og:title" content="垃圾收集器与内存分配策略2">
+<meta property="og:url" content="wenboshan.github.io/2018/06/02/jvm高级特性和最佳实践2/index.html">
 <meta property="og:site_name" content="猫蔓生活">
-<meta property="og:description" content="码农一枚">
+<meta property="og:description" content="（本文仅代表个人意见，如果看到不对的地方，可以邮件交流 wenboshan@aliyun.com，电脑板直接点击左下角邮箱即可）    垃圾收集算法  标记清除算法：标记然后清除，缺点在于一是效率比较低，二是空间问题，标记清除之后会产生大量不连续的空间碎片；   复制算法：复制需要清除的对象到另一块区域进行统一清除。实现简单，运行高效，但是占用空间(需要有Eden区和Survivor的划分)。 现">
 <meta property="og:locale" content="default">
+<meta property="og:image" content="https://wx3.sinaimg.cn/mw690/0078OFLCly1frwmnnxu08j30mw0dgq2x.jpg">
+<meta property="og:updated_time" content="2018-06-02T04:47:13.018Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="猫蔓生活">
-<meta name="twitter:description" content="码农一枚">
+<meta name="twitter:title" content="垃圾收集器与内存分配策略2">
+<meta name="twitter:description" content="（本文仅代表个人意见，如果看到不对的地方，可以邮件交流 wenboshan@aliyun.com，电脑板直接点击左下角邮箱即可）    垃圾收集算法  标记清除算法：标记然后清除，缺点在于一是效率比较低，二是空间问题，标记清除之后会产生大量不连续的空间碎片；   复制算法：复制需要清除的对象到另一块区域进行统一清除。实现简单，运行高效，但是占用空间(需要有Eden区和Survivor的划分)。 现">
+<meta name="twitter:image" content="https://wx3.sinaimg.cn/mw690/0078OFLCly1frwmnnxu08j30mw0dgq2x.jpg">
   
     <link rel="alternative" href="/atom.xml" title="猫蔓生活" type="application/atom+xml">
   
@@ -160,107 +163,211 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-jvm高级特性和最佳实践2" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2018" class="archive-year">2018</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2018/05/26/java程序性能优化2/" class="archive-article-date">
-  	<time datetime="2018-05-26T14:37:46.717Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-05-26</time>
-</a>
-        </div>
-    	 
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/05/26/java程序性能优化2/">java程序性能优化2</a>
+    <h1 class="article-title" itemprop="name">
+      垃圾收集器与内存分配策略2
     </h1>
   
 
-        <div class="article-info info-on-right">
-          
+        
+        <a href="/2018/06/02/jvm高级特性和最佳实践2/" class="archive-article-date">
+  	<time datetime="2018-06-02T01:47:27.113Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-06-02</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>（本文仅代表个人意见，如果看到不对的地方，可以邮件交流 <a href="mailto:wenboshan@aliyun.com" target="_blank" rel="noopener">wenboshan@aliyun.com</a>，电脑板直接点击左下角邮箱即可）   </p>
+<p>垃圾收集算法</p>
+<ol>
+<li>标记清除算法：标记然后清除，缺点在于一是效率比较低，二是空间问题，标记清除之后会产生大量不连续的空间碎片；  </li>
+<li>复制算法：复制需要清除的对象到另一块区域进行统一清除。实现简单，运行高效，但是占用空间(需要有Eden区和Survivor的划分)。 现在商业虚拟机都采用这种收集算法来回收新生代；</li>
+<li>标记-整理算法：标记后将所有存活的对象向一端移动，然后直接清理掉端边界以外的内存；</li>
+<li>分代收集算法： 当前商业虚拟机都在使用的算法，只是将内存分块，针对不同的区域采取不同的算法进行垃圾回收。</li>
+</ol>
+<p>HotSpot算法实现  </p>
+<ol>
+<li>枚举根节点：GC Roots需要在分析是否需要被回收的时候保持系统的停顿。检查通过OopMap存储的数据来达到分析分析是否需要回收的目的；OopMap是在指定的地方生成生成的，可以节省一些生成OopMap的开销；  </li>
+<li>安全点： 仅仅在指定位置记录OopMap，称为安全点，SafePoint，减少记录OopMap的开销。对于如何在GC发生时让所有线程（不包括执行JNI调用的线程）都到安全点再停顿下来，有两种方案可供选择，一是抢先式中断，一种是主动式中断。现在主要的是使用主动式中断。  </li>
+<li>安全区域：Safe Region ,放大的安全点（其实没太懂这里，如果之后有时间会回来详读）。<a id="more"></a>  
+垃圾收集器：  </li>
+</ol>
+<p><img src="https://wx3.sinaimg.cn/mw690/0078OFLCly1frwmnnxu08j30mw0dgq2x.jpg" alt="Alt text"> </p>
+<ol>
+<li>Serial收集器：单线程收集器，使用一条收集线程或者一个CPU去收集垃圾，并且在它收集的时候必须停掉其他所有的工作线程，直到它收集结束，采用复制算法；<br>控制参数：<br>–XX:SurvivorRatio 设置Eden区和Survivor区域的比值<br>–XX:PreteureSizeThreshold 设置对象在Eden区域超过设置值时可以直接进入老年代<br>–XX:HandlerPromotionFailure 是否允许担保失败，减少Full GC的次数在比较新的jDK版本中已经不在使用该参数</li>
+<li>parNew收集器：多线程收集器，Serial收集器的多线程版本，可以与CMS收集器合作，采用复制算法;<br>沿用了Serial中提到的三个配置参数<br>–XX:+UseConcMarkSweepGC 使用该选项后默认会使用到当前收集器<br>–XX:+UseParNewGC 使用该参数强制使用当前收集器<br>–XX:ParallelGCThreads 限制垃圾收集的线程数</li>
+<li>Parallel Scavenge收集器：其目标是达到一个可控制的吞吐量，吞吐量=运行用户代码时间/（运行用户代码时间+垃圾收集时间），采用复制算法；<br>控制参数：<br>–XX:MaxGCPauseMillis 控制最大垃圾收集停顿时间<br>–XX:GCTimeRatio 直接设置吞吐量大小<br>–XX:+UseAdaptiveSizePolicy 开关参数，设置这个参数后就不需要手工指定Eden区和Survivor区的比例以及其他一些配置参数了  </li>
+<li>Serial Old收集器：是Serial收集器的老年代版本，使用标记-整理算法，有两大用途，一是在JDK1.5以及之前的版本中与Parallel Scavenge收集器搭配使用，另一种用是作为CMS收集器的后备预案；</li>
+<li>Parallel Old是Parallel Scanvege收集器的老年版本，使用多线程和标记-整理算法。</li>
+<li>CMS收集器是一种以获取最短回收停顿时间为目标的收集器。基于标记-清除算法:<br>初始标记<br>并发标记<br>重新标记<br>并发清除<br>但是CMS有一些缺点:<br>CMS收集器对CPU资源非常敏感，为解决这个问题虚拟机提供了称为一种“增量并发式收集器”（Incremental Concurrent Mark Sweep/i-CMS）的CMS收集器变种，现在已经不提倡用户使用了；<br>CMS收集器无法处理浮动垃圾；<br>可能会产生很多空间碎片；<br>控制参数：<br>-XX:CMSIntiatingOccupancyFraction 提高CMS收集器的触发百分比，以便降低内存回收次数从而获取更好的性能；<br>-XX:+CMSFullGCsBeforeCompation 开关参数（默认是开启的），在FullGC的时候开启内存碎片的合并整理过程，内存整理的过程是无法并发的，空间碎片问题没有了，但停顿时间不得不变长；<br>-XX:UseCMSCompactAtFullCollection  设置执行多少次不压缩的FullGC后，跟着来一次带压缩的（默认值为0，表示每次进入Full GC时都进行碎片整理）。</li>
+<li>G1收集器：<br>并行与并发；<br>分代收集；<br>空间整合，在整体来看是基于“标记-整理”算法的，在局部来看是基于“复制”算法实现的；<br>可预测的停顿，G1跟踪各个Region里面的垃圾堆积的价值大小（回收所获得的空间大小以及回收所需要时间的经验值），在后台维护一个优先列表，每次根据允许的搜集时间，优先收回价值最大的Region(这也就是Garbage-First名称的由来)；<br>收集步骤：<br>初始标记<br>并发标记<br>最终标记<br>筛选回收<br>控制参数：<br>–XX:MaxGCPauseMillis 设置每次年轻代垃圾回收的最长时间，如果无法满足此时间，JVM会自动调整年轻代大小，以满足此值。<br>垃圾收集器参数总结<br>UseSerialGC 虚拟机在Client模式下的默认值，打开此开关后，使用Serial+Serial Old的收集器组合进行内存回收<br>UseParNewGC 打开此开关后，使用ParNew+Serial Old的收集器组合进行内存回收<br>UseConcMarkSweepGC 打开此开关后，使用ParNew+CMS+Serial Old的收集器组合进行内存回收。Serial Old收集器将作为CMS收集器出现Concurrent Mode Failure失败后的后备收集器使用<br>UseParallelGC 虚拟机在Server模式下的默认值，打开此开关后，使用Parallel Scavenge+Serial Old(PS MarkSweep)的收集器组合进行内存回收<br>UseParallelOldGC 打开此开关后，使用Paralle Scavenge+Parallel Old的收集器组合进行内存回收<br>SurvivorRatio 新生代中Eden区与Survivor区域的容量的比值，默认为8，代表Eden:Survivor=8:1<br>PretenureSizeThreshold 直接晋升到老年代的对象大小，设置这个参数后，大于这个参数的对象直接在老年代分配<br>MaxTenuringThreshold 晋升到老年代的对象年龄，每个对象在坚持过一次Minor GC之后，年龄就增加1，当超过这个参数数就进入老年代<br>UseAdaptiveSizePolicy 动态调整Java堆中各个区域的大小以及进入老年代的年龄<br>HandlePromotionFailure 是否允许分配担保失败，即老年代的剩余空间不足以应付新生代的整个Eden和Survivor区的所有对象都存活的极端情况(在JDK 6 Update 24之后不再使用)<br>ParallelGCThreads 设置并行GC时进行内存回收的线程数<br>GCTimeRatio GC时间占总时间的比率，默认值为99，即允许1%的GC时间，仅在使用Parallel Scavenge收集器时生效<br>MaxGCPauseMillis 设置GC的最大停顿时间，仅在使用Parallel Scavenge收集器时生效<br>CMSInitiatingOccupancyFraction 设置CMS收集器在老年代空间被使用多少后出发垃圾收集，默认值是68%，仅在使用CMS收集器时生效<br>UseCMSCompactAtFullCollection 设置CMS收集器在完成垃圾收集后是否要进行一次内存碎片整理，仅在使用CMS收集器时有效<br>CMSFullGCsBeforeCompaction 设置CMS收集器在进行若干次垃圾收集后在启动一次内存碎片整理，仅在使用CMS收集器时生效   </li>
+</ol>
+<p>内存分配与回收策略  </p>
+<ol>
+<li>对象优先在Eden分配  </li>
+<li>大对象直接进入老年代  </li>
+<li>长期存活的对象将进入老年代  </li>
+<li>动态对年龄进行判定  </li>
+<li>空间分配担保（在JDK 6 Update 24之后不再使用）</li>
+</ol>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">程序性能优化</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">技术</a>
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">技术</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">虚拟机</a>
         		</li>
       		
 		</ul>
 	</div>
 
-          
+      
 
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=http:wenboshan.github.io/2018/06/02/jvm高级特性和最佳实践2/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2018/05/26/java程序性能优化1/" class="archive-article-date">
-  	<time datetime="2018-05-26T12:10:39.357Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-05-26</time>
-</a>
+<nav id="article-nav">
+  
+  
+    <a href="/2018/05/29/jvm高级特性和最佳实践1/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">垃圾收集器与内存分配策略1</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
         </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/05/26/java程序性能优化1/">java程序性能优化1</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">程序性能优化</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">技术</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
+        
+        
+        <div class="toc-container tooltip-left">
+            <i class="icon-font icon-category"></i>
+            <div class="tooltip tooltip-east">
+                <span class="tooltip-item">
+                </span>
+                <span class="tooltip-content">
+                    <div class="toc-article">
+                    目录，不存在的…
+                    </div>
+                </span>
+            </div>
         </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
+        
+    </div>
+</aside>
+
+
+
   
   
-    </div></section>
   
 
-    
+  
 
+  
+    <section id="comments">
+      <div id="disqus_thread"></div>
+        <script type="text/javascript">
+        /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+        var disqus_shortname = 'true'; // required: replace example with your forum shortname
+
+        /* * * DON'T EDIT BELOW THIS LINE * * */
+        (function() {
+          var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+          dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+          (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        })();
+      </script>
+      <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    </section>
+  
+
+  
 
 
           </div>
@@ -283,9 +390,9 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
+		isPost: true,
 		isArchive: false,
-		isTag: true,
+		isTag: false,
 		isCategory: false,
 		open_in_new: true,
 		toc_hide_index: false,

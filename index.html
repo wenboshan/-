@@ -9,7 +9,7 @@
   <title>猫蔓生活</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="description" content="码农一枚">
-<meta name="keywords" content="后端,java">
+<meta name="keywords" content="后端 技术">
 <meta property="og:type" content="website">
 <meta property="og:title" content="猫蔓生活">
 <meta property="og:url" content="wenboshan.github.io/index.html">
@@ -162,6 +162,98 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-jvm高级特性和最佳实践2" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/06/02/jvm高级特性和最佳实践2/">垃圾收集器与内存分配策略2</a>
+    </h1>
+  
+
+        
+        <a href="/2018/06/02/jvm高级特性和最佳实践2/" class="archive-article-date">
+  	<time datetime="2018-06-02T01:47:27.113Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-06-02</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>（本文仅代表个人意见，如果看到不对的地方，可以邮件交流 <a href="mailto:wenboshan@aliyun.com" target="_blank" rel="noopener">wenboshan@aliyun.com</a>，电脑板直接点击左下角邮箱即可）   </p>
+<p>垃圾收集算法</p>
+<ol>
+<li>标记清除算法：标记然后清除，缺点在于一是效率比较低，二是空间问题，标记清除之后会产生大量不连续的空间碎片；  </li>
+<li>复制算法：复制需要清除的对象到另一块区域进行统一清除。实现简单，运行高效，但是占用空间(需要有Eden区和Survivor的划分)。 现在商业虚拟机都采用这种收集算法来回收新生代；</li>
+<li>标记-整理算法：标记后将所有存活的对象向一端移动，然后直接清理掉端边界以外的内存；</li>
+<li>分代收集算法： 当前商业虚拟机都在使用的算法，只是将内存分块，针对不同的区域采取不同的算法进行垃圾回收。</li>
+</ol>
+<p>HotSpot算法实现  </p>
+<ol>
+<li>枚举根节点：GC Roots需要在分析是否需要被回收的时候保持系统的停顿。检查通过OopMap存储的数据来达到分析分析是否需要回收的目的；OopMap是在指定的地方生成生成的，可以节省一些生成OopMap的开销；  </li>
+<li>安全点： 仅仅在指定位置记录OopMap，称为安全点，SafePoint，减少记录OopMap的开销。对于如何在GC发生时让所有线程（不包括执行JNI调用的线程）都到安全点再停顿下来，有两种方案可供选择，一是抢先式中断，一种是主动式中断。现在主要的是使用主动式中断。  </li>
+<li>安全区域：Safe Region ,放大的安全点（其实没太懂这里，如果之后有时间会回来详读）。
+        
+          <a class="article-more-a" href="/2018/06/02/jvm高级特性和最佳实践2/#more">more >></a>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">技术</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">虚拟机</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2018/06/02/jvm高级特性和最佳实践2/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-jvm高级特性和最佳实践1" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -182,9 +274,12 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>java与C++之间有一堵由内存动态分配和垃圾收集技术所围成的”高墙”，墙外面的人想进来，墙里面的人想出去。<br>GC(Garbage Collection)所需要考虑的三大问题，那些内存需要回收，什么时候回收，如何回收。<br>Java内存运行时的区域的各个部分中，程序计数器、虚拟机栈、本地方法栈3个区域随线程而生，随线程而灭；栈中的栈帧随着方法的进入和退出而有条不紊地执行着出栈和入栈操作。每一个栈帧中分配多少内存基本上是在类结构确定下来时就已知的（尽管运行期会由JIT编译器进行一些优化）；<br>确定对象是否死亡的算法：  </p>
+        <p>（本文仅代表个人意见，如果看到不对的地方，可以邮件交流 <a href="mailto:wenboshan@aliyun.com" target="_blank" rel="noopener">wenboshan@aliyun.com</a>，电脑板直接点击左下角邮箱即可）  </p>
+<p>java与C++之间有一堵由内存动态分配和垃圾收集技术所围成的”高墙”，墙外面的人想进来，墙里面的人想出去。<br>GC(Garbage Collection)所需要考虑的三大问题，那些内存需要回收，什么时候回收，如何回收。<br>Java内存运行时的区域的各个部分中，程序计数器、虚拟机栈、本地方法栈3个区域随线程而生，随线程而灭；栈中的栈帧随着方法的进入和退出而有条不紊地执行着出栈和入栈操作。每一个栈帧中分配多少内存基本上是在类结构确定下来时就已知的（尽管运行期会由JIT编译器进行一些优化）；  </p>
+<p>确定对象是否死亡的算法：  </p>
 <ol>
-<li>引用计数算法：在对象中添加引用计数器，当被引用时，计数器+1；当引用失效时，计数器-1；任何时刻计数器为0的对象都是不可能再被使用的，但是无法解决对象之间互相引用的问题，并且这种收集算法在java中是没有被使用的；
+<li>引用计数算法：在对象中添加引用计数器，当被引用时，计数器+1；当引用失效时，计数器-1；任何时刻计数器为0的对象都是不可能再被使用的，但是无法解决对象之间互相引用的问题，并且这种收集算法在java中是没有被使用的；</li>
+<li>可达性分析算法：  当一个对象到GC Roots没有任何引用链接相连时，则证明此对象是不可用的；  在Java语言中，可以作为GC Roots的对象包括以下几种：a,虚拟机栈（栈帧中的本地变量表）中引用的对象；b,方法区中静态属性引用的对象从;c,方法区中常量引用的对象；d,本地方法栈中JNI(即一般说的Native方法)引用的对象。
         
           <a class="article-more-a" href="/2018/05/29/jvm高级特性和最佳实践1/#more">more >></a>
         
@@ -340,7 +435,8 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>1.单例模式：<br>（1）对于频繁使用的对象，可以省略创建对象所花费的时间，这对于那些重量级对象而言，是非常可观的一笔系统开销。  （速度）<br>（2）由于new操作的次数减少，因而对系统内存的使用频率也会降低，这将会减轻GC的压力，缩短GC停顿时间。（垃圾回收的频率）<br>
+        <p>（本文仅代表个人意见，如果看到不对的地方，可以邮件交流 <a href="mailto:wenboshan@aliyun.com" target="_blank" rel="noopener">wenboshan@aliyun.com</a>，电脑板直接点击左下角邮箱即可）  </p>
+<p>1.单例模式：<br>（1）对于频繁使用的对象，可以省略创建对象所花费的时间，这对于那些重量级对象而言，是非常可观的一笔系统开销。  （速度）<br>（2）由于new操作的次数减少，因而对系统内存的使用频率也会降低，这将会减轻GC的压力，缩短GC停顿时间。（垃圾回收的频率）<br>
         
           <a class="article-more-a" href="/2018/05/26/java程序性能优化2/#more">more >></a>
         
@@ -420,7 +516,8 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>本文仅代表个人意见，如果看到不对的地方，可以邮件交流 <a href="mailto:wenboshan@aliyun.com" target="_blank" rel="noopener">wenboshan@aliyun.com</a>，电脑板直接点击左下角邮箱即可。<br>1.一般来说，程序的性能一般是通过以下几个方面来表现：<br>执行速度：程序的反映是否迅速，响应时间是否够短；<br>内存分配：内存分配是否合理，是否过多的消耗内存或者存在内存泄露；<br>启动时间：程序从运行到可以正常处理业务需要花费的多长时间；<br>负载承受能力：当系统压力上升时，系统的执行速度，响应时间的上升曲线是否平缓；<br>2.性能的参考指标：<br>执行时间：一段代码从开始运行到运行结束，所使用的时间；<br>CPU时间：函数或者线程占用CPU的时间；<br>内存分配：程序在运行时占用的内存空间；<br>
+        <p>（本文仅代表个人意见，如果看到不对的地方，可以邮件交流 <a href="mailto:wenboshan@aliyun.com" target="_blank" rel="noopener">wenboshan@aliyun.com</a>，电脑板直接点击左下角邮箱即可）  </p>
+<p>1.一般来说，程序的性能一般是通过以下几个方面来表现：<br>执行速度：程序的反映是否迅速，响应时间是否够短；<br>内存分配：内存分配是否合理，是否过多的消耗内存或者存在内存泄露；<br>启动时间：程序从运行到可以正常处理业务需要花费的多长时间；<br>负载承受能力：当系统压力上升时，系统的执行速度，响应时间的上升曲线是否平缓；<br>2.性能的参考指标：<br>执行时间：一段代码从开始运行到运行结束，所使用的时间；<br>CPU时间：函数或者线程占用CPU的时间；<br>内存分配：程序在运行时占用的内存空间；<br>
         
           <a class="article-more-a" href="/2018/05/26/java程序性能优化1/#more">more >></a>
         
@@ -717,80 +814,10 @@
 
 
   
-    <article id="post-index" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
   
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/05/06/index/">I am coming</a>
-    </h1>
-  
-
-        
-        <a href="/2018/05/06/index/" class="archive-article-date">
-  	<time datetime="2018-05-06T14:58:25.269Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-05-06</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>以后，打算在<a href="/">这里</a>安家啦<br>最近时间很紧张，有时间希望可以再好好收拾一下这个新家！<br><img src="https://wx4.sinaimg.cn/mw690/0078OFLCgy1fr6bnam6f9j30u00mh444.jpg" alt="Alt text"></p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">随笔</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2018/05/06/index/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
+    <nav id="page-nav">
+      <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/">Next &raquo;</a>
+    </nav>
   
 
 
@@ -971,7 +998,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
     
     	<section class="tools-section tools-section-me" q-show="aboutme">
   	  	
-  	  		<div class="aboutme-wrap" id="js-aboutme">希望与等待</div>
+  	  		<div class="aboutme-wrap" id="js-aboutme">字博约</div>
   	  	
     	</section>
     

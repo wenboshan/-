@@ -6,19 +6,20 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="wenboshan.github.io">
-  <title>Tag: 算法 | 猫蔓生活</title>
+  <title>面试2 | 猫蔓生活</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="码农一枚">
-<meta name="keywords" content="后端 技术">
-<meta property="og:type" content="website">
-<meta property="og:title" content="猫蔓生活">
-<meta property="og:url" content="wenboshan.github.io/tags/算法/index.html">
+  <meta name="description" content="（本文仅代表个人意见，如果看到不对的地方，可以邮件交流 wenboshan@aliyun.com，电脑板直接点击左下角邮箱即可）   六、Java的数据类型    Java的基本数据类型都有哪些各占几个字节byte          1     -128～127short         2     -32768～32767int         4     -2147483648～2147483">
+<meta name="keywords" content="技术,面试题">
+<meta property="og:type" content="article">
+<meta property="og:title" content="面试2">
+<meta property="og:url" content="wenboshan.github.io/2018/06/11/面试2/index.html">
 <meta property="og:site_name" content="猫蔓生活">
-<meta property="og:description" content="码农一枚">
+<meta property="og:description" content="（本文仅代表个人意见，如果看到不对的地方，可以邮件交流 wenboshan@aliyun.com，电脑板直接点击左下角邮箱即可）   六、Java的数据类型    Java的基本数据类型都有哪些各占几个字节byte          1     -128～127short         2     -32768～32767int         4     -2147483648～2147483">
 <meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2018-06-11T05:30:34.368Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="猫蔓生活">
-<meta name="twitter:description" content="码农一枚">
+<meta name="twitter:title" content="面试2">
+<meta name="twitter:description" content="（本文仅代表个人意见，如果看到不对的地方，可以邮件交流 wenboshan@aliyun.com，电脑板直接点击左下角邮箱即可）   六、Java的数据类型    Java的基本数据类型都有哪些各占几个字节byte          1     -128～127short         2     -32768～32767int         4     -2147483648～2147483">
   
     <link rel="alternative" href="/atom.xml" title="猫蔓生活" type="application/atom+xml">
   
@@ -160,36 +161,56 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-面试2" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2018" class="archive-year">2018</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2018/06/07/算法1/" class="archive-article-date">
-  	<time datetime="2018-06-07T02:53:43.331Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-06-07</time>
-</a>
-        </div>
-    	 
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/06/07/算法1/">算法1</a>
+    <h1 class="article-title" itemprop="name">
+      面试2
     </h1>
   
 
-        <div class="article-info info-on-right">
-          
+        
+        <a href="/2018/06/11/面试2/" class="archive-article-date">
+  	<time datetime="2018-06-11T02:13:52.736Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-06-11</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>（本文仅代表个人意见，如果看到不对的地方，可以邮件交流 <a href="mailto:wenboshan@aliyun.com" target="_blank" rel="noopener">wenboshan@aliyun.com</a>，电脑板直接点击左下角邮箱即可）  </p>
+<p>六、Java的数据类型  </p>
+<ol>
+<li>Java的基本数据类型都有哪些各占几个字节<br>byte          1     -128～127<br>short         2     -32768～32767<br>int         4     -2147483648～2147483647<br>long         8     -263～263-1<br>float         4     -3.403E38～3.403E38<br>double         8     -1.798E308～1.798E308<br>char         2     表示一个字符，如(‘a’， ‘A’， ‘0’， ‘家’)<br>boolean     1     只有两个值 true 与 false  <a id="more"></a></li>
+<li>short s1 = 1; s1 = s1 + 1; 有错吗?short s1 = 1; s1 += 1 有错吗;<br>前者不正确，后者正确。 对于 short s1 = 1; s1 = s1 + 1;由于 1 是 int 类型，因此 s1+1 运算结果也是 int 型，需要强制转换类型才能赋值给 short 型。<br>而 short s1 = 1; s1 += 1;可以正确编译，因为 s1+= 1;相当于 s1 =(short)(s1 + 1);其中有隐含的强制类型转换。</li>
+<li>int 和 和 Integer 有什么区别？<br>int 是基本数据类型，Integer 是基本数据类型的包装类<br>如果整型字面量的值在-128 到 127 之间，那么不会 new 新的 Integer 对象，而是直接引用常量池<br>中的 Integer 对象  </li>
+<li>String 类常用方法<br>字符串切割时，有三种选择，split(),StringTokenizer,indexOf(),效率依次上升  </li>
+<li>数据类型之间的转换<br>（1）字符串如何转基本数据类型<br>调用基本数据类型对应的包装类中的方法 parseXXX(String)或 valueOf(String)即可返回相应基本类型。<br>（2）基本数据类型如何转字符串<br>一种方法是将基本数据类型与空字符串（””）连接（+）即可获得其所对应的字符串；另一种方法是调用 String<br>类中的 valueOf()方法返回相应字符串。<br>七、Java的IO  </li>
+<li>Java 中有几种类型的流<br>按照流的方向：输入流（inputStream）和输出流（outputStream）。<br>按照实现功能分：节点流（可以从或向一个特定的地方（节点）读写数据。如 FileReader）和处理流（是对一个<br>已存在的流的连接和封装，通过所封装的流的功能调用实现数据读写。如 BufferedReader。处理流的构造方法总是要带一个其他的流对象做参数。一个流对象经过其他流的多次包装，称为流的链接。）<br>按照处理数据的单位： 字节流和字符流。字节流继承于 InputStream 和 OutputStream，字符流继承于<br>InputStreamReader 和 OutputStreamWriter。<br>设计模式：装饰模式  </li>
+<li>如何实现对象克隆<br>(1). 实现 Cloneable 接口并重写 Object 类中的 clone()方法，clone()是native的；<br>(2). 实现 Serializable 接口，通过对象的序列化和反序列化实现克隆，可以实现真正的深度克隆。<br>(3). 实现 Cloneable 接口并重写 Object 类中的 clone()方法，也可以实现深度克隆；<br>设计模式：原型模式  </li>
+<li>什么是 java 序列化，如何实现 java 序列化<br>序列化就是一种用来处理对象流的机制，所谓对象流也就是将对象的内容进行流化。可以对流化后的对象进行读<br>写操作，也可将流化后的对象传输于网络之间。序列化是为了解决在对对象流进行读写操作时所引发的问题。<br>八、Java 的集合  </li>
+<li>HashMap 排序  </li>
+<li>集合的安全性问题<br>Collections 工具类提供了相关的 API，可以让线程不安全的集合变为线程安全的；  </li>
+<li>ArrayList 内部用什么实现的<br>add方法可能,remove方法一定要使用到System.arraycopy()(效率很高的函数)<br>clear()方法使用Arrays.fill()方法清空  </li>
+<li>并发集合和普通集合如何区别<br>ConcurrentHashMap 默认情况下采用将数据分为 16 个段进行存储，并且 16 个段分别持有各自不同的锁<br>Segment，锁仅用于 put 和 remove 等改变集合对象的操作，基于 volatile 及 HashEntry 链表的不变性实现了读取的不加锁。这些方式使得 ConcurrentHashMap 能够保持极好的并发支持，尤其是对于读远比插入和删除频繁的 Map而言，而它采用的这些方法也可谓是对于 Java 内存模型、并发机制深刻掌握的体现。  </li>
+<li>List 的三个子类的特点<br>ArrayList 底层结构是数组,底层查询快,增删慢。<br>LinkedList 底层结构是链表型的,增删快,查询慢。<br>voctor 底层结构是数组 线程安全的,增删慢,查询慢。   </li>
+<li>List 和 Map、 Set 的区别<br>List和Set是存储单列数据的集合，Map是存储键和值这样的双列数据的集合； List 中存储的数据是有顺序，并且允许重复； Map 中存储的数据是没有顺序的，其键是不能重复的，它的值是可以有重复的， Set 中存储的数据是无序的，且不允许有重复，但元素在集合中的位置由元素的 hashcode 决定，位置是固定的（Set 集合根据 hashcode 来进行数据的存储，所以位置是固定的，但是位置不是用户可以控制的，所以对于用户来说 set 中的元素还是无序的），set底层是用map来实现的；  </li>
+<li>实现类<br>List 接口有三个实现类（LinkedList：基于链表实现，链表内存是散乱的，每一个元素存储本身内存地址的同还<br>存储下一个元素的地址。链表增删快，查找慢； ArrayList：基于数组实现，非线程安全的，效率高，便于索引，但不便于插入删除； Vector：基于数组实现，线程安全的，效率低）。<br>Map 接口有三个实现类（HashMap：基于 hash 表的 Map 接口实现，非线程安全，高效，支持 null 值和 null<br>键； HashTable：线程安全，低效，不支持 null 值和 null 键； LinkedHashMap：是 HashMap 的一个子类，保存了记录的插入顺序； SortMap 接口： TreeMap，能够把它保存的记录根据键排序，默认是键值的升序排序）。<br>Set 接口有两个实现类（HashSet：底层是由 HashMap 实现，不允许集合中有重复的值，使用该方式时需要重<br>写 equals()和 hashCode()方法； LinkedHashSet：继承与 HashSet，同时又基于 LinkedHashMap 来进行实现，底层使用的是 LinkedHashMp）。  </li>
+<li>区别<br>List 集合中对象按照索引位置排序，可以有重复对象，允许按照对象在集合中的索引位置检索对象，例如通过<br>list.get(i)方法来获取集合中的元素； Map 中的每一个元素包含一个键和一个值，成对出现，键对象不可以重复，值对象可以重复； Set 集合中的对象不按照特定的方式排序，并且没有重复对象，但它的实现类能对集合中的对象按照特定的方式排序，例如 TreeSet 类，可以按照默认顺序，也可以通过实Java.util.Comparator<type>接口来自定义排序方式。  </type></li>
+<li>HashMap 和 HashTable 有什么区别<br>HashMap 是线程不安全的,HashMap 是一个接口,是 Map 的一个子接口,是将键映射到值得对象,不允许键值重复,<br>允许空键和空值;由于非线程安全,HashMap 的效率要较 HashTable 的效率高一些.HashTable 是线程安全的一个集合,不允许 null 值作为一个 key 值或者 Value 值;HashTable 是 sychronize,多个线程访问时不需要自己为它的方法实现同步,而 HashMap 在被多个线程访问的时候需要自己为它的方法实现同步;  </li>
+<li>HashMap 对象的 key、 value 值均可为 null。<br>HahTable 对象的 key、 value 值均不可为 null。</li>
+</ol>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
@@ -199,26 +220,150 @@
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">算法</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">面试题</a>
         		</li>
       		
 		</ul>
 	</div>
 
-          
+      
 
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=http:wenboshan.github.io/2018/06/11/面试2/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
+  
+<nav id="article-nav">
+  
+    <a href="/2018/06/11/面试3/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          面试3
+        
+      </div>
+    </a>
   
   
-    </div></section>
+    <a href="/2018/06/07/算法1/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">算法1</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+        <div class="toc-container tooltip-left">
+            <i class="icon-font icon-category"></i>
+            <div class="tooltip tooltip-east">
+                <span class="tooltip-item">
+                </span>
+                <span class="tooltip-content">
+                    <div class="toc-article">
+                    目录，不存在的…
+                    </div>
+                </span>
+            </div>
+        </div>
+        
+    </div>
+</aside>
+
+
+
+  
+  
   
 
-    
+  
 
+  
+    <section id="comments">
+      <div id="disqus_thread"></div>
+        <script type="text/javascript">
+        /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+        var disqus_shortname = 'true'; // required: replace example with your forum shortname
+
+        /* * * DON'T EDIT BELOW THIS LINE * * */
+        (function() {
+          var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+          dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+          (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        })();
+      </script>
+      <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    </section>
+  
+
+  
 
 
           </div>
@@ -241,9 +386,9 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
+		isPost: true,
 		isArchive: false,
-		isTag: true,
+		isTag: false,
 		isCategory: false,
 		open_in_new: true,
 		toc_hide_index: false,

@@ -162,19 +162,192 @@
           <div id="js-content" class="content-ll">
             
   
-    <article id="post-面试1" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <article id="post-php1" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2018/06/11/面试1/">面试2</a>
+      <a class="article-title" href="/2018/07/02/php1/">Php入门基础知识</a>
     </h1>
   
 
         
-        <a href="/2018/06/11/面试1/" class="archive-article-date">
+        <a href="/2018/07/02/php1/" class="archive-article-date">
+  	<time datetime="2018-07-02T07:56:36.292Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-07-02</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>（本文仅代表个人意见，如果看到不对的地方，可以邮件交流 <a href="mailto:wenboshan@aliyun.com" target="_blank" rel="noopener">wenboshan@aliyun.com</a>，电脑板直接点击左下角邮箱即可）<br>新入职一家公司需要将一个项目转化为php的，所以需要学习一些php的一些技术，本人打算先看基础,然后链接数据库相关，然后入手一些框架。首先是一些php的基础知识；<br>1.PHP脚本嵌入<br><figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="php"><span class="meta">&lt;?php</span></span></span><br><span class="line"><span class="php"><span class="comment">// 此处是 PHP 代码</span></span></span><br><span class="line"><span class="php"><span class="meta">?&gt;</span></span></span><br></pre></td></tr></table></figure></p>
+<p>2.PHP变量规则</p>
+<ul>
+<li>变量以 $ 符号开头，其后是变量的名称</li>
+<li>变量名称必须以字母或下划线开头</li>
+<li>量名称不能以数字开头</li>
+<li>变量名称只能包含字母数字字符和下划线（A-z、0-9 以及 _）</li>
+<li>变量名称对大小写敏感（$y 与 $Y 是两个不同的变量）<br>3.PHP 是一门类型松散的语言<br>PHP 根据它的值，自动把变量转换为正确的数据类型。<br>4.PHP 变量作用域<br>在 PHP 中，可以在脚本的任意位置对变量进行声明。<br>变量的作用域指的是变量能够被引用/使用的那部分脚本。<br>PHP 有三种不同的变量作用域：</li>
+<li>local（局部）</li>
+<li>global（全局）</li>
+<li>static（静态）方法中的静态变量可以被下一个方法继续访问，但是无法在该函数外访问；
+        
+          <a class="article-more-a" href="/2018/07/02/php1/#more">more >></a>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">技术</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">php</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2018/07/02/php1/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-面试3" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/06/11/面试3/">面试3</a>
+    </h1>
+  
+
+        
+        <a href="/2018/06/11/面试3/" class="archive-article-date">
+  	<time datetime="2018-06-11T06:40:06.588Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-06-11</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>九、 Java 的多线程和并发库  </p>
+<ol>
+<li>线程局部变量 ThreadLocal<br>ThreadLocal 的作用和目的：用于实现线程内的数据共享，即对于相同的程序代码，多个模块在同一个<br>线程中运行时要共享一份数据，而在另外线程中运行时又共享另外一份数据。<br>每个线程调用全局 ThreadLocal 对象的 set 方法，在 set 方法中，首先根据当前线程获取当前线程的<br>ThreadLocalMap 对象，然后往这个 map 中插入一条记录， key 其实是 ThreadLocal 对象， value 是各自的 set方法传进去的值。也就是每个线程其实都有一份自己独享的 ThreadLocalMap 对象，该对象的 Key 是 ThreadLocal对象，值是用户设置的具体值。在线程结束时可以调用 ThreadLocal.remove()方法，这样会更快释放内存，不调用也可以，因为线程结束后也可以自动释放相关的 ThreadLocal 变量。<br>ThreadLocal 的应用场景：<br>订单处理包含一系列操作：减少库存量、增加一条流水台账、修改总账，这几个操作要在同一个<br>事务中完成，通常也即同一个线程中进行处理，如果累加公司应收款的操作失败了，则应该把前面<br>的操作回滚，否则，提交所有操作，这要求这些操作使用相同的数据库连接对象，而这些操作的代码<br>分别位于不同的模块类中。<br>银行转账包含一系列操作： 把转出帐户的余额减少，把转入帐户的余额增加，这两个操作要在<br>同一个事务中完成，它们必须使用相同的数据库连接对象，转入和转出操作的代码分别是两个不同<br>的帐户对象的方法。<br>例如 Strut2 的 ActionContext，同一段代码被不同的线程调用运行时，该代码操作的数据是每<br>个线程各自的状态和数据，对于不同的线程来说， getContext 方法拿到的对象都不相同，对同一个<br>线程来说，不管调用 getContext 方法多少次和在哪个模块中 getContext 方法，拿到的都是同一<br>个。<br>2.在java中wait和sleep方法的不同？<br>最大的不同是在等待时 wait 会释放锁，而 sleep 一直持有锁。 wait 通常被用于线程间交互， sleep 通常被用于暂停执行  </li>
+<li>synchronized 和 volatile 关键字的作用<br>一旦一个共享变量（类的成员变量、类的静态成员变量）被 volatile 修饰之后，那么就具备了两层语义：<br>（1）保证了不同线程对这个变量进行操作时的可见性，即一个线程修改了某个变量的值，这新值对其他线程来说是<br>立即可见的。<br>（2）禁止进行指令重排序。<br>volatile 本质是在告诉 jvm 当前变量在寄存器（工作内存）中的值是不确定的，需要从主存中读取；<br>synchronized 则是锁定当前变量，只有当前线程可以访问该变量，其他线程被阻塞住。<br>volatile 仅能使用在变量级别；<br>synchronized 则可以使用在变量、方法、和类级别的<br>volatile 仅能实现变量的修改可见性，并不能保证原子性；<br>synchronized 则可以保证变量的修改可见性和原子性<br>volatile 不会造成线程的阻塞；<br>synchronized 可能会造成线程的阻塞。<br>volatile 标记的变量不会被编译器优化；<br>synchronized 标记的变量可以被编译器优化  </li>
+<li>线程池的好处<br>第一：降低资源消耗。通过重复利用已创建的线程降低线程创建和销毁造成的消耗。<br>第二：提高响应速度。当任务到达时，任务可以不需要等到线程创建就能立即执行。<br>第三：提高线程的可管理性。线程是稀缺资源，如果无限制的创建，不仅会消耗系统资源，还会降低系统的稳定<br>性，使用线程池可以进行统一的分配，调优和监控。</li>
+</ol>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">技术</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">面试题</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2018/06/11/面试3/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-面试2" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/06/11/面试2/">面试2</a>
+    </h1>
+  
+
+        
+        <a href="/2018/06/11/面试2/" class="archive-article-date">
   	<time datetime="2018-06-11T02:13:52.736Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-06-11</time>
 </a>
         
@@ -187,7 +360,7 @@
 <ol>
 <li>Java的基本数据类型都有哪些各占几个字节<br>byte          1     -128～127<br>short         2     -32768～32767<br>int         4     -2147483648～2147483647<br>long         8     -263～263-1<br>float         4     -3.403E38～3.403E38<br>double         8     -1.798E308～1.798E308<br>char         2     表示一个字符，如(‘a’， ‘A’， ‘0’， ‘家’)<br>boolean     1     只有两个值 true 与 false
         
-          <a class="article-more-a" href="/2018/06/11/面试1/#more">more >></a>
+          <a class="article-more-a" href="/2018/06/11/面试2/#more">more >></a>
         
       
 
@@ -215,7 +388,7 @@
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2018/06/11/面试1/">展开全文 >></a>
+          <a class="article-more-a" href="/2018/06/11/面试2/">展开全文 >></a>
         </p>
       
 
@@ -659,168 +832,6 @@
 
 
   
-    <article id="post-java程序性能优化1" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/05/26/java程序性能优化1/">java程序性能优化1</a>
-    </h1>
-  
-
-        
-        <a href="/2018/05/26/java程序性能优化1/" class="archive-article-date">
-  	<time datetime="2018-05-26T12:10:39.357Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-05-26</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>（本文仅代表个人意见，如果看到不对的地方，可以邮件交流 <a href="mailto:wenboshan@aliyun.com" target="_blank" rel="noopener">wenboshan@aliyun.com</a>，电脑板直接点击左下角邮箱即可）  </p>
-<p>1.一般来说，程序的性能一般是通过以下几个方面来表现：<br>执行速度：程序的反映是否迅速，响应时间是否够短；<br>内存分配：内存分配是否合理，是否过多的消耗内存或者存在内存泄露；<br>启动时间：程序从运行到可以正常处理业务需要花费的多长时间；<br>负载承受能力：当系统压力上升时，系统的执行速度，响应时间的上升曲线是否平缓；<br>2.性能的参考指标：<br>执行时间：一段代码从开始运行到运行结束，所使用的时间；<br>CPU时间：函数或者线程占用CPU的时间；<br>内存分配：程序在运行时占用的内存空间；<br>
-        
-          <a class="article-more-a" href="/2018/05/26/java程序性能优化1/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">程序性能优化</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">技术</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2018/05/26/java程序性能优化1/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-springBootLearning" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/05/20/springBootLearning/">SpringBoot学习（一）</a>
-    </h1>
-  
-
-        
-        <a href="/2018/05/20/springBootLearning/" class="archive-article-date">
-  	<time datetime="2018-05-20T12:41:09.735Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-05-20</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>之前一直是通过百度或者看曾经的一些前辈的视频来学习一些东西，现在想试着去通过自己去看一些文档或者文献去了解一样东西。试读了SpringBoot的开发文档，似乎有了翻译器的帮助也没有那么难了。整理自己今天收获的东西。<br>ps:参考文献大部分来自于<a href="https://docs.spring.io/spring-boot/docs/current-SNAPSHOT/reference/htmlsingle/#getting-started-first-application" target="_blank" rel="noopener">SpringBoot官方文档</a>，并且一些总结仅代表个人意见，如果看到不正确的地方，可以邮箱交流：<a href="mailto:wenboshan@aliyun.com" target="_blank" rel="noopener">wenboshan@aliyun.com</a>，电脑板直接点击左下角邮箱即可。</p>
-<p>一、SpringBoot 建议使用配置类替代配置文件，SpringBoot建议在使用的用Enable*去快或许适合类，不过如果非要使用xml也可以，可以用@ImportResource注解去加载xml类。<br>
-        
-          <a class="article-more-a" href="/2018/05/20/springBootLearning/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">技术</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">框架</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2018/05/20/springBootLearning/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
   
     <nav id="page-nav">
       <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/">Next &raquo;</a>
@@ -951,6 +962,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">面试题</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">php</a>
               </li>
             
             <div class="clearfix"></div>
